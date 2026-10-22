@@ -77,14 +77,11 @@
     @apply font-display text-midnight;
     letter-spacing: -0.015em;
     text-wrap: balance;
-    /* Long Dutch compound words must never cause horizontal scrolling. */
-    overflow-wrap: anywhere;
-    hyphens: auto;
-  }
-  p,
-  li,
-  dd {
-    overflow-wrap: break-word;
+    /* Words are never split or hyphenated. Long Dutch compounds are handled
+       with responsive font sizes where they occur, not by breaking them. */
+    hyphens: manual;
+    overflow-wrap: normal;
+    word-break: normal;
   }
   /* Grid items default to min-width: auto, which lets long words widen columns. */
   .grid > * {
@@ -151,9 +148,11 @@
   }
   .prose-ara h2 {
     @apply mt-10 text-2xl font-bold;
+    font-size: min(1.5rem, var(--fit, 1.5rem));
   }
   .prose-ara h3 {
     @apply mt-8 text-xl font-bold;
+    font-size: min(1.25rem, var(--fit, 1.25rem));
   }
   .prose-ara ul,
   .prose-ara ol {

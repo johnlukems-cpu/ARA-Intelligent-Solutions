@@ -119,7 +119,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <SectionHeading id="services-title" eyebrow={t.home.servicesEyebrow} title={t.home.servicesTitle} />
             <p className="max-w-md text-muted lg:text-right">{t.home.servicesIntro}</p>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {serviceCategories.map((category) => (
               <ServiceCategoryCard key={category.id} category={category} locale={locale} />
             ))}

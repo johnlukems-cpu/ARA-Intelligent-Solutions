@@ -65,7 +65,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="bg-surface py-16 sm:py-20" aria-labelledby="values-title">
         <div className="container-site">
           <SectionHeading id="values-title" title={a.valuesTitle} align="center" />
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {a.values.map((value, index) => {
               const ValueIcon = valueIcons[index] ?? Compass;
               return (

@@ -91,7 +91,7 @@ export function Footer({ locale }: { locale: Locale }) {
           ) : null}
         </div>
 
-        <nav aria-label={t.a11y.footerNav} className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+        <nav aria-label={t.a11y.footerNav} className="grid grid-cols-1 gap-8 min-[400px]:grid-cols-2 xl:grid-cols-4 lg:col-span-8">
           <FooterColumn title={t.footer.servicesTitle}>
             {serviceCategories.map((category) => (
               <FooterLink key={category.id} href={href(locale, "services", category.slug[locale])}>

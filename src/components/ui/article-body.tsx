@@ -1,5 +1,6 @@
 import { Lightbulb, Quote } from "lucide-react";
 import type { ContentBlock } from "@/content/types";
+import { fitWord } from "@/lib/fit-word";
 
 /** Renders structured article content without any raw HTML. */
 export function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
@@ -9,9 +10,17 @@ export function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
         const key = `${block.type}-${index}`;
         switch (block.type) {
           case "heading":
-            return <h2 key={key}>{block.text}</h2>;
+            return (
+              <h2 key={key} style={fitWord(block.text, 80)}>
+                {block.text}
+              </h2>
+            );
           case "subheading":
-            return <h3 key={key}>{block.text}</h3>;
+            return (
+              <h3 key={key} style={fitWord(block.text, 80)}>
+                {block.text}
+              </h3>
+            );
           case "list":
             return block.ordered ? (
               <ol key={key}>

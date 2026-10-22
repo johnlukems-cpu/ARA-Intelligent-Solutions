@@ -3,6 +3,7 @@ import type { Service } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
+import { fitWord } from "@/lib/fit-word";
 import { ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 
@@ -15,7 +16,12 @@ export function ServiceBlock({ service, locale, headingLevel = "h3" }: { service
       <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-midnight text-cyan shadow-[var(--shadow-glow)]">
         <Icon name={service.icon} className="size-6" />
       </span>
-      <Heading className="mt-5 text-lg font-extrabold leading-snug sm:text-xl">{service.name[locale]}</Heading>
+      <Heading
+        style={fitWord(service.name[locale], 80)}
+        className="mt-5 text-[length:min(1.125rem,var(--fit,1.125rem))] leading-snug font-extrabold sm:text-[length:min(1.25rem,var(--fit,1.25rem))]"
+      >
+        {service.name[locale]}
+      </Heading>
       <p className="mt-5 leading-relaxed text-ink">{service.description[locale]}</p>
       <div className="mt-5 rounded-2xl bg-surface p-4">
         <p className="flex items-center gap-2 text-sm font-bold text-midnight">

@@ -4,6 +4,7 @@ import { serviceCategories } from "@/content/services";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
+import { fitWord } from "@/lib/fit-word";
 import { ServiceBlock } from "@/components/cards/service-block";
 import { CtaBand } from "@/components/ui/cta-band";
 import { Icon } from "@/components/ui/icon";
@@ -49,7 +50,11 @@ export function ServicesPage({ locale }: { locale: Locale }) {
                     <span className="flex size-11 items-center justify-center rounded-xl bg-navy text-cyan">
                       <Icon name={category.icon} className="size-5" />
                     </span>
-                    <h2 id={`${category.id}-title`} className="text-3xl font-extrabold">
+                    <h2
+                      id={`${category.id}-title`}
+                      style={fitWord(category.name[locale], 104)}
+                      className="text-[length:min(1.875rem,var(--fit,1.875rem))] font-extrabold"
+                    >
                       {category.name[locale]}
                     </h2>
                   </div>
