@@ -1,40 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import emblem from "@/assets/images/ara-emblem.png";
+import logo from "@/assets/images/ara-logo-dark.webp";
 import { cn } from "@/lib/format";
 
-/** ARA emblem + typographic wordmark. Crisp at any size and on dark backgrounds. */
+/**
+ * The complete ARA logo (macaw emblem, ARA wordmark, INTELLIGENT SOLUTIONS),
+ * in its transparent variant for dark backgrounds. Sized by height (header) or
+ * width (footer); the intrinsic aspect ratio is always preserved.
+ */
 export function Logo({
   homeHref,
   label,
-  size = "md",
+  variant = "header",
   className,
 }: {
   homeHref: string;
   label: string;
-  size?: "md" | "lg";
+  variant?: "header" | "footer";
   className?: string;
 }) {
+  const header = variant === "header";
   return (
-    <Link href={homeHref} aria-label={label} className={cn("group inline-flex items-center gap-3 rounded-lg", className)}>
+    <Link href={homeHref} aria-label={label} className={cn("group inline-flex shrink-0 items-center rounded-lg", className)}>
       <Image
-        src={emblem}
+        src={logo}
         alt=""
-        priority
-        sizes={size === "lg" ? "64px" : "48px"}
+        priority={header}
+        sizes={header ? "(min-width: 1024px) 160px, 125px" : "(min-width: 640px) 320px, 270px"}
         className={cn(
-          "shrink-0 rounded-full shadow-[0_0_20px_-4px_rgb(0_213_232/0.6)] transition-transform duration-300 group-hover:scale-105",
-          size === "lg" ? "size-14" : "size-11",
+          "h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]",
+          header ? "w-[7.75rem] lg:w-[9.5rem]" : "w-[16.5rem] sm:w-[20rem]",
         )}
       />
-      <span className="flex flex-col leading-none" aria-hidden="true">
-        <span className={cn("font-display font-extrabold tracking-[0.12em] text-white", size === "lg" ? "text-3xl" : "text-2xl")}>
-          AR<span className="text-gradient">A</span>
-        </span>
-        <span className={cn("mt-1 font-display font-bold tracking-[0.16em] text-white/90", size === "lg" ? "text-[0.7rem]" : "text-[0.6rem]")}>
-          INTELLIGENT <span className="text-cyan">SOLUTIONS</span>
-        </span>
-      </span>
     </Link>
   );
 }

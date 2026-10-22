@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Compass } from "lucide-react";
 import "./globals.css";
-import emblem from "@/assets/images/ara-emblem.png";
+import logo from "@/assets/images/ara-logo-dark.webp";
 import { siteConfig } from "@/config/site";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href, type RouteKey } from "@/i18n/routes";
@@ -28,8 +28,7 @@ export default function GlobalNotFound() {
           <div aria-hidden="true" className="bg-circuit absolute inset-0" />
           <div className="container-site relative flex flex-1 flex-col items-center justify-center py-16 text-center">
             <Link href="/" className="inline-flex items-center gap-3 rounded-lg" aria-label={getDictionary("nl").a11y.home}>
-              <Image src={emblem} alt="" priority sizes="64px" className="size-16 rounded-full" />
-              <span className="font-display text-2xl font-extrabold tracking-[0.12em]">ARA</span>
+              <Image src={logo} alt="" priority sizes="240px" className="h-auto w-60 object-contain" />
             </Link>
             <span className="mt-10 flex size-14 items-center justify-center rounded-full bg-white/10 ring-1 ring-cyan/40">
               <Compass aria-hidden="true" className="size-7 text-cyan" />

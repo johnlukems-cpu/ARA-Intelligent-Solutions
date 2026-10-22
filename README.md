@@ -65,6 +65,20 @@ docs/design-reference.webp   The original website mock-up used as the visual ref
 
 The route files under `src/app` are thin wrappers: each calls a view from `src/views` with its locale, so both languages always render the same page.
 
+## Brand assets
+
+| File | Use | Source |
+| --- | --- | --- |
+| `src/assets/images/ara-logo-dark.webp` | Header and footer logo, 404 page | Derived from the original full logo: white background removed (transparent) and the navy lettering turned white for dark backgrounds. The macaw artwork and proportions are unchanged. |
+| `src/assets/images/ara-logo-full.webp` | About page (on a white card) | Original full logo on white |
+| `src/assets/images/macaw-hero.webp` | Homepage hero | Original brand cover, cropped to the complete macaw. The baked-in brand text at the right edge was removed and the bird-free edges were feathered into transparency. |
+| `src/assets/images/ara-banner.webp`, `ara-brand-cover.webp`, `suriname-river.webp` | Homepage about card, About page, call-to-action band | Original brand artwork |
+| `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular emblem |
+
+`scripts/brand-assets/` contains the Python (Pillow + NumPy) scripts that generate the logo variant and the hero image from the original files, for example `python3 scripts/brand-assets/make_logo_dark.py <original-logo> out.webp`.
+
+**For an even sharper header logo, ask the designer for a vector (SVG) version of the logo**, ideally a horizontal lockup for dark backgrounds. The current logo is a raster derivative, and in the original lockup the `INTELLIGENT SOLUTIONS` line is small relative to the macaw, so it is only just legible at header size. It reads clearly in the larger footer version.
+
 ## Editing content
 
 All content lives in `src/content/`. Pages, cards, the footer, the sitemap and search pick up changes automatically.

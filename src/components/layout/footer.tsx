@@ -47,7 +47,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <div aria-hidden="true" className="h-px bg-gradient-to-r from-transparent via-cyan/60 to-transparent" />
       <div className="container-site grid gap-12 py-14 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
-          <Logo homeHref={href(locale, "home")} label={t.a11y.home} size="lg" />
+          <Logo homeHref={href(locale, "home")} label={t.a11y.home} variant="footer" />
           <p className="mt-5 font-display text-lg font-semibold text-white" lang="en">
             {siteConfig.tagline}
           </p>

@@ -56,7 +56,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="on-dark bg-hero-glow relative isolate overflow-hidden text-white" aria-labelledby="hero-title">
         <div aria-hidden="true" className="bg-circuit absolute inset-0 -z-10 opacity-80" />
         <div className="container-site grid items-center gap-10 pt-12 pb-16 lg:grid-cols-12 lg:gap-8 lg:pt-16 lg:pb-24">
-          <div className="motion-safe:animate-fade-up lg:col-span-7">
+          <div className="motion-safe:animate-fade-up lg:col-span-6">
             <p className="eyebrow text-cyan">
               <span aria-hidden="true" className="h-px w-6 bg-current opacity-60" />
               {t.home.eyebrow}
@@ -90,24 +90,25 @@ export function HomePage({ locale }: { locale: Locale }) {
             </ul>
           </div>
 
-          <div className="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none">
-            <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-full bg-electric/30 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-white/15">
-              <Image
-                src={macawHero}
-                alt={t.home.heroImageAlt}
-                priority
-                placeholder="blur"
-                sizes="(min-width: 1024px) 40vw, (min-width: 640px) 28rem, 100vw"
-                className="aspect-[4/5] h-auto w-full object-cover object-top sm:aspect-[2/3]"
-              />
-              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-midnight/90 to-transparent" />
-              <p className="absolute right-5 bottom-5 left-5 font-display text-lg font-semibold text-white italic">
-                {t.home.signature}
-                <span aria-hidden="true" className="mt-2 block h-0.5 w-16 rounded-full bg-macaw" />
-              </p>
-            </div>
-          </div>
+          {/* The image keeps its intrinsic ratio (no forced aspect, no cover-crop), so the
+              complete macaw is always visible. Its edges are feathered into transparency
+              (only where there is no bird), letting the hero background show through. */}
+          <figure className="relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:col-span-6 lg:mr-0 lg:max-w-[32rem]">
+            <div aria-hidden="true" className="absolute inset-[8%] -z-10 rounded-full bg-electric/30 blur-3xl" />
+            <div aria-hidden="true" className="absolute top-[12%] right-[10%] -z-10 size-1/3 rounded-full bg-cyan/15 blur-3xl" />
+            <Image
+              src={macawHero}
+              alt={t.home.heroImageAlt}
+              priority
+              placeholder="blur"
+              sizes="(min-width: 1024px) 32rem, (min-width: 640px) 26rem, 22rem"
+              className="h-auto w-full object-contain"
+            />
+            <figcaption className="relative -mt-6 pr-[10%] text-right font-display text-base font-semibold text-white italic drop-shadow-[0_2px_8px_rgb(6_23_46/0.9)] sm:-mt-8 sm:text-lg">
+              {t.home.signature}
+              <span aria-hidden="true" className="mt-2 ml-auto block h-0.5 w-16 rounded-full bg-macaw" />
+            </figcaption>
+          </figure>
         </div>
       </section>
 

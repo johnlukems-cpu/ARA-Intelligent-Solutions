@@ -122,7 +122,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
 
   return (
     <header className="on-dark sticky top-0 z-50 border-b border-white/10 bg-midnight text-white">
-      <div className="container-site flex h-[4.5rem] items-center justify-between gap-4">
+      <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 lg:h-[5.5rem]">
         {logo}
 
         <nav aria-label={labels.mainNav} className="hidden lg:block">
