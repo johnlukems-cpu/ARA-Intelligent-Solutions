@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-midnight: #06172e;
+  --color-navy: #0a2342;
+  --color-navy-700: #12325c;
+  --color-electric: #087cf0;
+  /* Accessible electric blue for text on light backgrounds (5.6:1 on white). */
+  --color-electric-600: #0565c9;
+  --color-cyan: #00d5e8;
+  --color-cyan-300: #6fe8f3;
+  --color-macaw: #ffc928;
+  --color-macaw-600: #9a6b00;
+  --color-surface: #f4f8fc;
+  --color-line: #dce6f1;
+  --color-ink: #26364b;
+  --color-muted: #52637a;
+  --color-success: #0f7a4a;
+  --color-danger: #b42318;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-montserrat), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(6 23 46 / 0.04), 0 8px 24px -12px rgb(6 23 46 / 0.18);
+  --shadow-card-hover: 0 2px 4px rgb(6 23 46 / 0.06), 0 18px 40px -16px rgb(8 124 240 / 0.35);
+  --shadow-glow: 0 0 0 1px rgb(0 213 232 / 0.35), 0 10px 30px -10px rgb(0 213 232 / 0.55);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-float-slow: float-slow 9s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-midnight;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    /* Long Dutch compound words must never cause horizontal scrolling. */
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+  p,
+  li,
+  dd {
+    overflow-wrap: break-word;
+  }
+  /* Grid items default to min-width: auto, which lets long words widen columns. */
+  .grid > * {
+    min-width: 0;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-electric);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-cyan);
+  }
+  ::selection {
+    background: rgb(0 213 232 / 0.3);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Components                                                          */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.22em] uppercase;
+  }
+
+  /* Subtle circuit pattern for dark sections. */
+  .bg-circuit {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' fill='none' stroke='%2300D5E8' stroke-opacity='0.09' stroke-width='1'%3E%3Cpath d='M0 40h40l20 20h40M100 60v40l20 20h40M20 160v-40l20-20h20M160 20h-30l-10 10v30'/%3E%3Ccircle cx='100' cy='60' r='2.5'/%3E%3Ccircle cx='60' cy='100' r='2.5'/%3E%3Ccircle cx='120' cy='30' r='2.5'/%3E%3C/svg%3E");
+  }
+
+  .bg-hero-glow {
+    background:
+      radial-gradient(60% 70% at 85% 30%, rgb(8 124 240 / 0.35), transparent 70%),
+      radial-gradient(40% 50% at 10% 90%, rgb(0 213 232 / 0.16), transparent 70%),
+      linear-gradient(180deg, var(--color-midnight), var(--color-navy));
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, var(--color-cyan), #3aa8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .accent-bar {
+    @apply block h-1 w-10 rounded-full bg-gradient-to-r from-cyan to-electric;
+  }
+
+  /* Long-form article typography. */
+  .prose-ara {
+    @apply text-[1.0625rem] leading-relaxed text-ink;
+  }
+  .prose-ara > * + * {
+    margin-top: 1.15em;
+  }
+  .prose-ara h2 {
+    @apply mt-10 text-2xl font-bold;
+  }
+  .prose-ara h3 {
+    @apply mt-8 text-xl font-bold;
+  }
+  .prose-ara ul,
+  .prose-ara ol {
+    @apply space-y-2 pl-6;
+  }
+  .prose-ara ul {
+    list-style: disc;
+  }
+  .prose-ara ol {
+    list-style: decimal;
+  }
+  .prose-ara li::marker {
+    color: var(--color-electric);
+  }
+  .prose-ara a {
+    @apply font-semibold text-electric-600 underline underline-offset-2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
