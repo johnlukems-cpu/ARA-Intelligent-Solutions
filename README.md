@@ -71,7 +71,7 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 | --- | --- | --- |
 | `src/assets/images/ara-logo-dark.webp` | Header and footer logo, 404 page | Derived from the original full logo: white background removed (transparent) and the navy lettering turned white for dark backgrounds. The macaw artwork and proportions are unchanged. |
 | `src/assets/images/ara-logo-full.webp` | About page (on a white card) | Original full logo on white |
-| `src/assets/images/macaw-hero.webp` | Homepage hero | Original brand cover, cropped to the complete macaw. The baked-in brand text at the right edge was removed and the bird-free edges were feathered into transparency. |
+| `src/assets/images/macaw-hero.webp` | Homepage hero | Original brand cover (1600×900), cropped to x 0–780: the complete macaw plus clear sky in front of the beak. The baked-in brand text inside that crop was replaced with matching night sky, and only bird-free edges fade into transparency. The source frame itself cuts the very tips of the left wing feathers. |
 | `src/assets/images/ara-banner.webp`, `ara-brand-cover.webp`, `suriname-river.webp` | Homepage about card, About page, call-to-action band | Original brand artwork |
 | `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular emblem |
 
