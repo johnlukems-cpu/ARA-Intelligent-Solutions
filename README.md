@@ -84,12 +84,12 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 All content lives in `src/content/`. Pages, cards, the footer, the sitemap and search pick up changes automatically.
 
 - **Services**: `services.ts`. Four categories with eleven services, each with a description, the problem it solves and examples, in both languages.
-- **Products**: `products.ts`. Add an object to `products`. Rules (also documented in the file):
-  - `status`: `available`, `beta`, `in-development` or `coming-soon`. Only use `available`/`beta` for products that really exist.
-  - `isSample: true` shows a "Concept" label and the catalogue notice. **Every current product is a concept and is marked that way.**
+- **Products**: `products.ts`. The catalogue contains ARA Payroll, ARA Accounting, ARA Tax, ARA HR and BouwFlow, all with status `coming-soon`. Their descriptions, features and FAQs are draft texts; check them before launch. Rules (also documented in the file):
+  - `status`: `available`, `beta`, `in-development` or `coming-soon`. Only use `available`/`beta` for products that really exist. While any product is unreleased, the catalogue shows a "coming soon, details may change" notice.
+  - `brand`: `{ kind: "ara-app", tone, icon, label }` shows the ARA app style (coloured app icon + "ARA" + name as live text). `{ kind: "logo", src, width, height }` shows a product's own logo (BouwFlow). Icons and logos live in `public/images/products/`. Without `brand`, generated artwork is used.
   - `pricing` is optional. Leave it out until prices are confirmed; the page then says pricing has not been announced.
   - `cta`: `{ type: "contact" }` sends visitors to the contact form with the product pre-selected. Only use `{ type: "external", url, label }` once a working destination such as a checkout exists.
-  - Optional `image` and `screenshots`. Without an image, generated brand artwork is used, so a missing image never breaks.
+  - `isSample: true` marks illustrative placeholder entries with a "Concept" label (none at the moment).
 - **News**: create a file in `content/news/articles/`, then add it to the list in `content/news/index.ts`. Provide `translations.nl` and/or `translations.en`. The body uses structured blocks (`paragraph`, `heading`, `subheading`, `list`, `quote`, `callout`), so no HTML is needed and nothing unsafe gets rendered. Reading time is calculated automatically.
   - **Missing translations**: an article without English is still listed in the English section with an "Only available in Dutch" label. Its page shows the original text with a notice, is `noindex` and points its canonical URL at the original. The language switch on such a page goes to the news overview.
   - `isDemo: true` shows a "sample article" notice. **All seven current articles are demo content** (general, factual guidance; no company announcements). Review or replace them before launch.

@@ -1,4 +1,4 @@
-import { hasSampleProducts, products } from "@/content/products";
+import { hasSampleProducts, hasUnreleasedProducts, products } from "@/content/products";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
@@ -24,6 +24,8 @@ export function ProductsPage({ locale }: { locale: Locale }) {
             <Notice tone="warning" className="mb-8">
               {t.products.sampleNotice}
             </Notice>
+          ) : hasUnreleasedProducts() ? (
+            <Notice className="mb-8">{t.products.unreleasedNotice}</Notice>
           ) : null}
           <ProductsExplorer products={products} locale={locale} />
         </div>

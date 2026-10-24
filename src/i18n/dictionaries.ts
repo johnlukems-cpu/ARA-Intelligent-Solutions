@@ -93,7 +93,7 @@ const nl = {
       { title: "Ondersteunen", text: "Na livegang blijven we beschikbaar voor beheer en doorontwikkeling." },
     ],
     productsEyebrow: "Producten",
-    productsTitle: "Eigen digitale producten in ontwikkeling.",
+    productsTitle: "Eigen software, binnenkort beschikbaar.",
     productsIntro:
       "Naast maatwerk ontwikkelt ARA eigen softwareoplossingen. Bekijk de status van elk product in onze catalogus.",
     productsCta: "Bekijk alle producten",
@@ -140,9 +140,11 @@ const nl = {
     title: "Onze producten",
     eyebrow: "Productcatalogus",
     intro:
-      "ARA ontwikkelt eigen digitale tools en intelligente softwareoplossingen voor organisaties. Hier vindt u een overzicht van onze producten en hun actuele status.",
+      "ARA ontwikkelt eigen software voor de administratie en bedrijfsvoering van organisaties: van salarissen, boekhouding, belastingen en HR tot projectbeheer in de bouw. Hier vindt u onze producten en hun actuele status.",
     sampleNotice:
       "Let op: deze catalogus bevat momenteel conceptproducten die in ontwikkeling of gepland zijn. Ze zijn nog niet commercieel beschikbaar. Informatie kan wijzigen.",
+    unreleasedNotice:
+      "Onze producten komen binnenkort beschikbaar. Functies en details kunnen tot de lancering nog wijzigen. Laat uw interesse achter, dan houden we u op de hoogte.",
     searchLabel: "Zoek producten",
     searchPlaceholder: "Zoek op naam of functie…",
     filterLabel: "Filter op categorie",
@@ -434,7 +436,7 @@ const en: Dictionary = {
       { title: "Support", text: "After go-live we remain available for maintenance and improvement." },
     ],
     productsEyebrow: "Products",
-    productsTitle: "Our own digital products, in development.",
+    productsTitle: "Our own software, coming soon.",
     productsIntro:
       "Alongside custom work, ARA develops its own software solutions. See the current status of each product in our catalogue.",
     productsCta: "View all products",
@@ -481,9 +483,11 @@ const en: Dictionary = {
     title: "Our Products",
     eyebrow: "Product catalogue",
     intro:
-      "ARA develops its own digital tools and intelligent software solutions for organizations. Here you will find an overview of our products and their current status.",
+      "ARA develops its own software for the administration and operations of organizations: from payroll, accounting, tax and HR to project management in construction. Here you will find our products and their current status.",
     sampleNotice:
       "Please note: this catalogue currently contains concept products that are in development or planned. They are not yet commercially available. Details may change.",
+    unreleasedNotice:
+      "Our products are coming soon. Features and details may change until launch. Register your interest and we will keep you informed.",
     searchLabel: "Search products",
     searchPlaceholder: "Search by name or feature…",
     filterLabel: "Filter by category",

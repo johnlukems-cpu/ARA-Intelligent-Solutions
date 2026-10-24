@@ -8,7 +8,7 @@ import { href } from "@/i18n/routes";
 import { ProductCard } from "@/components/cards/product-card";
 import { StatusBadge, Tag } from "@/components/ui/badges";
 import { ButtonLink, buttonClasses } from "@/components/ui/button";
-import { CoverArt } from "@/components/ui/cover-art";
+import { ProductVisual } from "@/components/ui/product-visual";
 import { Notice } from "@/components/ui/notice";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -90,6 +90,7 @@ export function ProductDetailPage({ product, locale }: { product: Product; local
         <div className="container-site grid gap-8 lg:grid-cols-12">
           <div className="space-y-8 lg:col-span-8">
             {product.isSample ? <Notice tone="warning">{t.products.sampleNotice}</Notice> : null}
+            {!product.isSample && !released ? <Notice>{t.products.unreleasedNotice}</Notice> : null}
 
             <section aria-label={product.name} className="rounded-[var(--radius-card)] bg-white p-6 shadow-[var(--shadow-card)] ring-1 ring-line sm:p-8">
               <p className="text-lg font-semibold text-midnight">{product.summary[locale]}</p>
@@ -184,7 +185,7 @@ export function ProductDetailPage({ product, locale }: { product: Product; local
                     className="aspect-[4/3] w-full object-cover"
                   />
                 ) : (
-                  <CoverArt icon={product.icon} accent={product.accent} size="lg" className="aspect-[4/3]" />
+                  <ProductVisual product={product} size="lg" className="aspect-[4/3]" />
                 )}
                 <div className="p-6">
                   <dl className="space-y-3 text-sm">

@@ -4,14 +4,15 @@ import type { Product, ProductCategory } from "./types";
 /**
  * PRODUCT CATALOGUE
  *
- * ⚠️  All entries below are CONCEPT products (isSample: true). They illustrate
- * the catalogue structure and ARA's product direction, but are NOT released or
- * commercially available. Replace or confirm each entry before launch.
+ * ARA's own products. All are currently "coming-soon": they are not yet
+ * commercially available, and the texts below are draft descriptions that may
+ * change before launch.
  *
  * Rules:
- * - Only use status "available" or "beta" when the product really exists.
+ * - Only use status "available" or "beta" when the product can really be used.
  * - Only add `pricing` once prices are confirmed.
  * - Only use an "external" CTA when a working destination (e.g. checkout) exists.
+ * - `isSample: true` marks illustrative placeholder entries (shows a "Concept" label).
  */
 
 export const productCategoryLabels: Record<ProductCategory, Localized> = {
@@ -25,383 +26,387 @@ export const productCategoryLabels: Record<ProductCategory, Localized> = {
 
 export const products: Product[] = [
   {
-    id: "prod-knowledge",
-    slug: "ara-kennisassistent",
-    name: "ARA Knowledge Assistant",
-    icon: "bot",
-    accent: "cyan",
-    category: "ai-tools",
-    status: "in-development",
-    isSample: true,
-    featured: true,
-    tagline: {
-      nl: "Antwoorden uit uw eigen documenten, met bronvermelding.",
-      en: "Answers from your own documents, with source references.",
-    },
-    summary: {
-      nl: "Een AI-assistent die vragen van medewerkers beantwoordt op basis van interne documenten, procedures en beleid.",
-      en: "An AI assistant that answers employee questions based on internal documents, procedures and policies.",
-    },
-    description: {
-      nl: [
-        "ARA Knowledge Assistant is een conceptproduct dat organisaties helpt hun interne kennis beter toegankelijk te maken. Medewerkers stellen een vraag in gewone taal en krijgen een antwoord op basis van goedgekeurde documenten — met verwijzingen naar de bron.",
-        "Het uitgangspunt is betrouwbaarheid: de assistent antwoordt alleen op basis van de documenten die u toevoegt en geeft aan wanneer het antwoord niet in de bronnen te vinden is.",
-      ],
-      en: [
-        "ARA Knowledge Assistant is a concept product that helps organizations make their internal knowledge more accessible. Employees ask a question in plain language and get an answer based on approved documents — with references to the source.",
-        "Reliability is the starting point: the assistant only answers based on the documents you add and indicates when an answer cannot be found in the sources.",
-      ],
-    },
-    problem: {
-      nl: "Medewerkers zoeken lang naar procedures en beleid, of stellen steeds dezelfde vragen aan collega's. Kennis is moeilijk vindbaar en raakt verloren als mensen vertrekken.",
-      en: "Employees spend a long time searching for procedures and policies, or keep asking colleagues the same questions. Knowledge is hard to find and gets lost when people leave.",
-    },
-    features: {
-      nl: [
-        "Vragen stellen in gewone taal (Nederlands en Engels)",
-        "Antwoorden met verwijzing naar het brondocument",
-        "Beheer van welke documenten de assistent mag gebruiken",
-        "Rolgebaseerde toegang tot gevoelige informatie",
-      ],
-      en: [
-        "Ask questions in plain language (Dutch and English)",
-        "Answers with references to the source document",
-        "Control over which documents the assistant may use",
-        "Role-based access to sensitive information",
-      ],
-    },
-    audience: {
-      nl: ["HR- en operationele teams", "Organisaties met veel procedures en beleid", "Klantenservice-afdelingen"],
-      en: ["HR and operations teams", "Organizations with many procedures and policies", "Customer service departments"],
-    },
-    benefits: {
-      nl: ["Minder tijd kwijt aan zoeken", "Consistente antwoorden", "Kennis blijft behouden binnen de organisatie"],
-      en: ["Less time spent searching", "Consistent answers", "Knowledge stays within the organization"],
-    },
-    faq: {
-      nl: [
-        {
-          question: "Is ARA Knowledge Assistant al beschikbaar?",
-          answer: "Nee. Het product is in ontwikkeling. Laat uw interesse achter via het contactformulier, dan houden we u op de hoogte.",
-        },
-        {
-          question: "Waar worden de documenten opgeslagen?",
-          answer: "Dit wordt in het ontwerp per klant bepaald. Privacy en gegevensbeveiliging zijn uitgangspunten bij de ontwikkeling.",
-        },
-      ],
-      en: [
-        {
-          question: "Is ARA Knowledge Assistant available yet?",
-          answer: "No. The product is in development. Register your interest through the contact form and we will keep you informed.",
-        },
-        {
-          question: "Where are the documents stored?",
-          answer: "This is determined per customer during design. Privacy and data security are core principles in development.",
-        },
-      ],
-    },
-    cta: { type: "contact" },
-  },
-  {
-    id: "prod-docflow",
-    slug: "ara-docflow",
-    name: "ARA DocFlow",
-    icon: "file",
-    accent: "blue",
-    category: "business-automation",
-    status: "in-development",
-    isSample: true,
-    featured: true,
-    tagline: {
-      nl: "Van inkomend document naar verwerkte gegevens.",
-      en: "From incoming document to processed data.",
-    },
-    summary: {
-      nl: "Automatische verwerking van inkomende documenten zoals formulieren en facturen, met controle door een medewerker.",
-      en: "Automatic processing of incoming documents such as forms and invoices, with review by an employee.",
-    },
-    description: {
-      nl: [
-        "ARA DocFlow is een conceptproduct voor het automatisch uitlezen, classificeren en doorsturen van documenten. Gegevens worden herkend en klaargezet voor controle, waarna ze naar het juiste systeem gaan.",
-        "Een medewerker houdt altijd de regie: twijfelgevallen worden gemarkeerd en niets wordt definitief verwerkt zonder dat de ingestelde controles zijn doorlopen.",
-      ],
-      en: [
-        "ARA DocFlow is a concept product for automatically reading, classifying and routing documents. Data is recognized and prepared for review, after which it goes to the right system.",
-        "An employee always stays in control: uncertain cases are flagged and nothing is finalized without passing the configured checks.",
-      ],
-    },
-    problem: {
-      nl: "Documenten worden handmatig overgetypt in verschillende systemen. Dat kost tijd, leidt tot fouten en zorgt voor achterstanden in drukke periodes.",
-      en: "Documents are manually retyped into various systems. This takes time, causes errors and creates backlogs during busy periods.",
-    },
-    features: {
-      nl: [
-        "Herkennen van documenttype en belangrijke velden",
-        "Controlescherm voor medewerkers",
-        "Doorsturen naar bestaande systemen via koppelingen",
-        "Overzicht van status en doorlooptijd",
-      ],
-      en: [
-        "Recognizing document type and key fields",
-        "Review screen for employees",
-        "Routing to existing systems via integrations",
-        "Overview of status and processing time",
-      ],
-    },
-    audience: {
-      nl: ["Administratieve afdelingen", "Organisaties met veel formulieren", "Financiële teams"],
-      en: ["Administrative departments", "Organizations with many forms", "Finance teams"],
-    },
-    benefits: {
-      nl: ["Minder handmatige invoer", "Minder invoerfouten", "Beter overzicht van de verwerking"],
-      en: ["Less manual entry", "Fewer input errors", "Better overview of processing"],
-    },
-    faq: {
-      nl: [
-        {
-          question: "Welke documenttypen worden ondersteund?",
-          answer: "Dit wordt tijdens de ontwikkeling bepaald op basis van gesprekken met potentiële gebruikers.",
-        },
-        {
-          question: "Kan ik meedenken over de ontwikkeling?",
-          answer: "Ja. Neem contact op als u interesse heeft om mee te denken of later deel te nemen aan een pilot.",
-        },
-      ],
-      en: [
-        {
-          question: "Which document types are supported?",
-          answer: "This will be determined during development based on conversations with potential users.",
-        },
-        {
-          question: "Can I contribute to the development?",
-          answer: "Yes. Get in touch if you would like to share input or take part in a pilot later on.",
-        },
-      ],
-    },
-    cta: { type: "contact" },
-  },
-  {
-    id: "prod-invoice",
-    slug: "ara-invoicedesk",
-    name: "ARA InvoiceDesk",
+    id: "prod-payroll",
+    slug: "ara-payroll",
+    name: "ARA Payroll",
     icon: "receipt",
-    accent: "yellow",
+    accent: "blue",
+    brand: { kind: "ara-app", tone: "blue", icon: "/images/products/ara-payroll-icon.png", label: "Payroll" },
     category: "finance",
     status: "coming-soon",
-    isSample: true,
+    isSample: false,
     featured: true,
     tagline: {
-      nl: "Facturen en openstaande posten in één overzicht.",
-      en: "Invoices and receivables in one overview.",
+      nl: "Salarisadministratie en loonverwerking.",
+      en: "Payroll administration and processing.",
     },
     summary: {
-      nl: "Eenvoudige facturatie en debiteurenopvolging voor kleine en middelgrote ondernemingen, met ondersteuning voor meerdere valuta.",
-      en: "Simple invoicing and receivables follow-up for small and medium-sized businesses, with multi-currency support.",
+      nl: "Software voor de salarisadministratie: van personeelsgegevens en looncomponenten tot loonstroken en overzichten per periode.",
+      en: "Payroll software: from employee data and pay components to payslips and per-period overviews.",
     },
     description: {
       nl: [
-        "ARA InvoiceDesk is een gepland product dat facturatie en de opvolging van openstaande facturen overzichtelijk maakt. Het concept is ontworpen met ondernemingen in Suriname in gedachten, waar werken met meerdere valuta gebruikelijk is.",
-        "De nadruk ligt op eenvoud: snel een factuur opstellen, inzicht in wat openstaat en tijdige herinneringen.",
+        "ARA Payroll brengt de salarisadministratie samen in één omgeving. Medewerkergegevens, looncomponenten en verwerkingen per periode worden centraal vastgelegd, zodat de loonverwerking overzichtelijk en controleerbaar blijft.",
+        "Het product wordt ontwikkeld met de praktijk van organisaties in Suriname in gedachten en sluit aan op ARA Accounting en ARA HR.",
       ],
       en: [
-        "ARA InvoiceDesk is a planned product that makes invoicing and following up on outstanding invoices straightforward. The concept is designed with businesses in Suriname in mind, where working with multiple currencies is common.",
-        "The focus is simplicity: quickly create an invoice, see what is outstanding and send timely reminders.",
+        "ARA Payroll brings payroll administration together in one environment. Employee data, pay components and per-period processing are recorded centrally, keeping payroll clear and verifiable.",
+        "The product is being developed with the practice of organizations in Suriname in mind and connects to ARA Accounting and ARA HR.",
       ],
     },
     problem: {
-      nl: "Facturen worden in losse bestanden bijgehouden, waardoor het lastig is te zien wat er openstaat en betalingen te laat worden opgevolgd.",
-      en: "Invoices are kept in separate files, making it hard to see what is outstanding and causing late follow-up on payments.",
+      nl: "Salarissen worden vaak in spreadsheets berekend. Dat kost elke periode veel tijd, is foutgevoelig en maakt het lastig om terug te zien hoe een bedrag tot stand kwam.",
+      en: "Salaries are often calculated in spreadsheets. That takes a lot of time every period, is error-prone and makes it hard to trace how an amount was calculated.",
     },
     features: {
       nl: [
-        "Facturen opstellen op basis van sjablonen",
-        "Ondersteuning voor meerdere valuta (bijv. SRD, USD, EUR)",
-        "Overzicht van openstaande posten",
-        "Herinneringen voor vervallen facturen",
+        "Centrale vastlegging van medewerkers en looncomponenten",
+        "Loonverwerking per periode",
+        "Digitale loonstroken",
+        "Overzichten en rapportages voor administratie en management",
       ],
       en: [
-        "Create invoices from templates",
-        "Multi-currency support (e.g. SRD, USD, EUR)",
-        "Overview of outstanding items",
-        "Reminders for overdue invoices",
+        "Central records of employees and pay components",
+        "Per-period payroll processing",
+        "Digital payslips",
+        "Overviews and reports for administration and management",
       ],
     },
     audience: {
-      nl: ["Zzp'ers en kleine ondernemingen", "Dienstverleners", "Organisaties met klanten in meerdere valuta"],
-      en: ["Freelancers and small businesses", "Service providers", "Organizations with customers in multiple currencies"],
+      nl: ["Kleine en middelgrote ondernemingen", "Administratiekantoren", "HR- en financiële afdelingen"],
+      en: ["Small and medium-sized businesses", "Accounting firms", "HR and finance departments"],
     },
     benefits: {
-      nl: ["Meer overzicht over uw cashflow", "Minder tijd aan administratie", "Tijdiger betalingen opvolgen"],
-      en: ["Better overview of your cash flow", "Less time on administration", "More timely payment follow-up"],
+      nl: ["Minder handwerk per loonperiode", "Minder rekenfouten", "Alle salarisgegevens op één plek"],
+      en: ["Less manual work per pay period", "Fewer calculation errors", "All payroll data in one place"],
     },
     faq: {
       nl: [
         {
-          question: "Wanneer komt ARA InvoiceDesk beschikbaar?",
-          answer: "Er is nog geen lanceringsdatum. Registreer uw interesse om op de hoogte te blijven.",
+          question: "Wanneer komt ARA Payroll beschikbaar?",
+          answer: "ARA Payroll komt binnenkort beschikbaar. Laat uw interesse achter via het contactformulier, dan houden we u op de hoogte.",
         },
         {
-          question: "Vervangt dit mijn boekhoudsoftware?",
-          answer: "Nee, het concept richt zich op facturatie en debiteurenbeheer. Koppelingen met boekhoudsoftware worden onderzocht.",
+          question: "Werkt ARA Payroll samen met de andere ARA-producten?",
+          answer: "Ja, ARA Payroll wordt ontwikkeld om aan te sluiten op ARA Accounting en ARA HR.",
         },
       ],
       en: [
         {
-          question: "When will ARA InvoiceDesk be available?",
-          answer: "There is no launch date yet. Register your interest to stay informed.",
+          question: "When will ARA Payroll be available?",
+          answer: "ARA Payroll is coming soon. Register your interest through the contact form and we will keep you informed.",
         },
         {
-          question: "Does this replace my accounting software?",
-          answer: "No, the concept focuses on invoicing and receivables management. Integrations with accounting software are being explored.",
+          question: "Does ARA Payroll work with the other ARA products?",
+          answer: "Yes, ARA Payroll is being developed to connect with ARA Accounting and ARA HR.",
         },
       ],
     },
     cta: { type: "contact" },
   },
   {
-    id: "prod-booking",
-    slug: "ara-booking",
-    name: "ARA Booking",
-    icon: "calendar",
-    accent: "cyan",
-    category: "web-applications",
-    status: "coming-soon",
-    isSample: true,
-    tagline: {
-      nl: "Online afspraken maken, zonder heen-en-weer bellen.",
-      en: "Online appointments, without back-and-forth calls.",
-    },
-    summary: {
-      nl: "Een online boekingssysteem waarmee klanten zelf een afspraak inplannen op basis van uw beschikbaarheid.",
-      en: "An online booking system that lets customers schedule appointments themselves based on your availability.",
-    },
-    description: {
-      nl: [
-        "ARA Booking is een gepland webproduct voor dienstverleners die afspraken met klanten plannen. Klanten kiezen zelf een beschikbaar tijdstip en ontvangen automatisch een bevestiging.",
-        "Het systeem wordt ontworpen om goed te werken op mobiele telefoons, omdat veel klanten via hun telefoon boeken.",
-      ],
-      en: [
-        "ARA Booking is a planned web product for service providers who schedule appointments with customers. Customers choose an available time slot themselves and automatically receive a confirmation.",
-        "The system is designed to work well on mobile phones, since many customers book via their phone.",
-      ],
-    },
-    problem: {
-      nl: "Afspraken plannen via telefoon en berichten kost veel tijd en leidt tot dubbele boekingen en no-shows.",
-      en: "Scheduling appointments via phone and messages takes a lot of time and leads to double bookings and no-shows.",
-    },
-    features: {
-      nl: ["Online agenda met beschikbare tijden", "Automatische bevestigingen en herinneringen", "Beheeromgeving voor medewerkers", "Geschikt voor mobiel"],
-      en: ["Online calendar with available times", "Automatic confirmations and reminders", "Management environment for staff", "Mobile-friendly"],
-    },
-    audience: {
-      nl: ["Praktijken en salons", "Adviseurs en consultants", "Servicebedrijven"],
-      en: ["Practices and salons", "Advisors and consultants", "Service companies"],
-    },
-    benefits: {
-      nl: ["Minder tijd aan plannen", "Minder gemiste afspraken", "Klanten kunnen 24/7 boeken"],
-      en: ["Less time spent scheduling", "Fewer missed appointments", "Customers can book 24/7"],
-    },
-    faq: {
-      nl: [{ question: "Is ARA Booking al te gebruiken?", answer: "Nee, het product is gepland en nog niet beschikbaar." }],
-      en: [{ question: "Can I use ARA Booking already?", answer: "No, the product is planned and not yet available." }],
-    },
-    cta: { type: "contact" },
-  },
-  {
-    id: "prod-insights",
-    slug: "ara-insights",
-    name: "ARA Insights",
+    id: "prod-accounting",
+    slug: "ara-accounting",
+    name: "ARA Accounting",
     icon: "chart",
+    accent: "cyan",
+    brand: { kind: "ara-app", tone: "green", icon: "/images/products/ara-accounting-icon.png", label: "Accounting" },
+    category: "finance",
+    status: "coming-soon",
+    isSample: false,
+    featured: true,
+    tagline: {
+      nl: "Boekhouding en financiële administratie.",
+      en: "Bookkeeping and financial administration.",
+    },
+    summary: {
+      nl: "Overzichtelijke boekhoudsoftware voor de dagelijkse financiële administratie, met inzicht in uw cijfers wanneer u het nodig heeft.",
+      en: "Clear accounting software for day-to-day financial administration, with insight into your figures whenever you need it.",
+    },
+    description: {
+      nl: [
+        "ARA Accounting ondersteunt de dagelijkse boekhouding: het vastleggen van inkomsten en uitgaven, het bijhouden van debiteuren en crediteuren en het opstellen van financiële overzichten.",
+        "Omdat veel ondernemingen in Suriname met meerdere valuta werken, is dat vanaf het begin een uitgangspunt in het ontwerp.",
+      ],
+      en: [
+        "ARA Accounting supports day-to-day bookkeeping: recording income and expenses, keeping track of receivables and payables and producing financial overviews.",
+        "Because many businesses in Suriname work with multiple currencies, that is a design principle from the start.",
+      ],
+    },
+    problem: {
+      nl: "Financiële gegevens staan verspreid over bonnen, spreadsheets en bankafschriften. Daardoor is er pas laat inzicht in de cijfers en kost de periodeafsluiting veel tijd.",
+      en: "Financial data is scattered across receipts, spreadsheets and bank statements. Insight into the figures comes late, and closing a period takes a lot of time.",
+    },
+    features: {
+      nl: [
+        "Vastleggen van inkomsten en uitgaven",
+        "Debiteuren- en crediteurenbeheer",
+        "Ondersteuning voor meerdere valuta",
+        "Financiële overzichten en rapportages",
+      ],
+      en: [
+        "Recording income and expenses",
+        "Receivables and payables management",
+        "Multi-currency support",
+        "Financial overviews and reports",
+      ],
+    },
+    audience: {
+      nl: ["Ondernemers en zzp'ers", "Kleine en middelgrote ondernemingen", "Administratiekantoren"],
+      en: ["Entrepreneurs and freelancers", "Small and medium-sized businesses", "Accounting firms"],
+    },
+    benefits: {
+      nl: ["Actueel inzicht in uw financiën", "Snellere periodeafsluiting", "Minder losse bestanden"],
+      en: ["Up-to-date insight into your finances", "Faster period closing", "Fewer scattered files"],
+    },
+    faq: {
+      nl: [
+        {
+          question: "Wanneer komt ARA Accounting beschikbaar?",
+          answer: "ARA Accounting komt binnenkort beschikbaar. Laat uw interesse achter, dan houden we u op de hoogte.",
+        },
+        {
+          question: "Kan ik met meerdere valuta werken?",
+          answer: "Ondersteuning voor meerdere valuta, zoals SRD, USD en EUR, is een uitgangspunt bij de ontwikkeling.",
+        },
+      ],
+      en: [
+        {
+          question: "When will ARA Accounting be available?",
+          answer: "ARA Accounting is coming soon. Register your interest and we will keep you informed.",
+        },
+        {
+          question: "Can I work with multiple currencies?",
+          answer: "Support for multiple currencies, such as SRD, USD and EUR, is a design principle in its development.",
+        },
+      ],
+    },
+    cta: { type: "contact" },
+  },
+  {
+    id: "prod-tax",
+    slug: "ara-tax",
+    name: "ARA Tax",
+    icon: "file",
+    accent: "yellow",
+    brand: { kind: "ara-app", tone: "amber", icon: "/images/products/ara-tax-icon.png", label: "Tax" },
+    category: "finance",
+    status: "coming-soon",
+    isSample: false,
+    tagline: {
+      nl: "Belastingaangiften en fiscale overzichten.",
+      en: "Tax returns and tax overviews.",
+    },
+    summary: {
+      nl: "Ondersteuning bij het voorbereiden van belastingaangiften, met heldere fiscale overzichten en grip op deadlines.",
+      en: "Support for preparing tax returns, with clear tax overviews and a firm grip on deadlines.",
+    },
+    description: {
+      nl: [
+        "ARA Tax helpt bij het verzamelen en voorbereiden van de gegevens die nodig zijn voor belastingaangiften. Fiscale overzichten per periode maken zichtbaar wat er speelt en wat er nog moet gebeuren.",
+        "ARA Tax wordt ontwikkeld om samen te werken met ARA Accounting en ARA Payroll, zodat gegevens niet opnieuw ingevoerd hoeven te worden.",
+      ],
+      en: [
+        "ARA Tax helps collect and prepare the data needed for tax returns. Tax overviews per period show what is going on and what still needs to be done.",
+        "ARA Tax is being developed to work together with ARA Accounting and ARA Payroll, so data does not need to be entered twice.",
+      ],
+    },
+    problem: {
+      nl: "Het voorbereiden van belastingaangiften kost veel zoekwerk in losse administraties, en deadlines komen vaak onverwacht snel dichterbij.",
+      en: "Preparing tax returns involves a lot of searching through separate records, and deadlines often approach unexpectedly fast.",
+    },
+    features: {
+      nl: [
+        "Voorbereiding van aangiftegegevens",
+        "Fiscale overzichten per periode",
+        "Overzicht van deadlines en herinneringen",
+        "Aansluiting op ARA Accounting en ARA Payroll",
+      ],
+      en: [
+        "Preparation of tax return data",
+        "Tax overviews per period",
+        "Overview of deadlines and reminders",
+        "Connection with ARA Accounting and ARA Payroll",
+      ],
+    },
+    audience: {
+      nl: ["Ondernemers", "Financiële afdelingen", "Administratie- en belastingadvieskantoren"],
+      en: ["Business owners", "Finance departments", "Accounting and tax advisory firms"],
+    },
+    benefits: {
+      nl: ["Minder zoekwerk bij aangiftes", "Beter overzicht van fiscale verplichtingen", "Deadlines tijdig in beeld"],
+      en: ["Less searching when filing", "Better overview of tax obligations", "Deadlines in view on time"],
+    },
+    faq: {
+      nl: [
+        {
+          question: "Dient ARA Tax de aangifte voor mij in?",
+          answer: "Hoe aangiftes worden ingediend, wordt tijdens de ontwikkeling bepaald. Laat ons weten wat u nodig heeft via het contactformulier.",
+        },
+        {
+          question: "Wanneer komt ARA Tax beschikbaar?",
+          answer: "ARA Tax komt binnenkort beschikbaar. Registreer uw interesse om op de hoogte te blijven.",
+        },
+      ],
+      en: [
+        {
+          question: "Does ARA Tax file the return for me?",
+          answer: "How returns are filed will be determined during development. Let us know what you need through the contact form.",
+        },
+        {
+          question: "When will ARA Tax be available?",
+          answer: "ARA Tax is coming soon. Register your interest to stay informed.",
+        },
+      ],
+    },
+    cta: { type: "contact" },
+  },
+  {
+    id: "prod-hr",
+    slug: "ara-hr",
+    name: "ARA HR",
+    icon: "network",
     accent: "navy",
+    brand: { kind: "ara-app", tone: "purple", icon: "/images/products/ara-hr-icon.png", label: "HR" },
     category: "business-software",
     status: "coming-soon",
-    isSample: true,
+    isSample: false,
     tagline: {
-      nl: "Uw belangrijkste cijfers in één dashboard.",
-      en: "Your key figures in one dashboard.",
+      nl: "Personeelsbeheer en HR-processen.",
+      en: "Personnel management and HR processes.",
     },
     summary: {
-      nl: "Een dashboard dat gegevens uit verschillende bronnen samenbrengt tot actuele, begrijpelijke bedrijfsinformatie.",
-      en: "A dashboard that brings together data from different sources into current, understandable business information.",
+      nl: "Eén plek voor personeelsgegevens en HR-processen, zoals verlof, contracten en onboarding van nieuwe medewerkers.",
+      en: "One place for employee data and HR processes, such as leave, contracts and onboarding of new employees.",
     },
     description: {
       nl: [
-        "ARA Insights is een gepland product dat gegevens uit bijvoorbeeld uw verkoop, administratie en planning combineert in overzichtelijke dashboards.",
-        "Het doel is beslissingen te onderbouwen met actuele cijfers in plaats van handmatig samengestelde spreadsheets.",
+        "ARA HR brengt personeelsgegevens en HR-processen samen. Medewerkers, contracten, verlof en documenten worden centraal beheerd, met duidelijke rollen en rechten.",
+        "Door de koppeling met ARA Payroll hoeven medewerkergegevens maar één keer te worden vastgelegd.",
       ],
       en: [
-        "ARA Insights is a planned product that combines data from sources such as sales, administration and planning into clear dashboards.",
-        "The goal is to support decisions with up-to-date figures instead of manually compiled spreadsheets.",
+        "ARA HR brings employee data and HR processes together. Employees, contracts, leave and documents are managed centrally, with clear roles and permissions.",
+        "Thanks to the connection with ARA Payroll, employee data only needs to be recorded once.",
       ],
     },
     problem: {
-      nl: "Managementinformatie wordt handmatig samengesteld, is vaak verouderd en verschilt per afdeling.",
-      en: "Management information is compiled manually, is often outdated and differs per department.",
+      nl: "Personeelsdossiers, verlofaanvragen en contracten worden vaak op papier of in losse bestanden bijgehouden. Dat maakt HR-processen traag en foutgevoelig.",
+      en: "Personnel files, leave requests and contracts are often kept on paper or in separate files. That makes HR processes slow and error-prone.",
     },
     features: {
-      nl: ["Koppelingen met veelgebruikte bronnen", "Configureerbare dashboards", "Periodieke rapportages per e-mail", "Toegangsbeheer per gebruiker"],
-      en: ["Integrations with common data sources", "Configurable dashboards", "Periodic email reports", "Per-user access control"],
+      nl: [
+        "Digitale personeelsdossiers",
+        "Verlofaanvragen en -goedkeuring",
+        "Beheer van contracten en documenten",
+        "Onboarding van nieuwe medewerkers",
+      ],
+      en: [
+        "Digital personnel files",
+        "Leave requests and approval",
+        "Contract and document management",
+        "Onboarding of new employees",
+      ],
     },
     audience: {
-      nl: ["Directie en management", "Teamleiders", "Financiële afdelingen"],
-      en: ["Executives and management", "Team leads", "Finance departments"],
+      nl: ["HR-afdelingen", "Leidinggevenden", "Groeiende organisaties"],
+      en: ["HR departments", "Managers", "Growing organizations"],
     },
     benefits: {
-      nl: ["Eén versie van de waarheid", "Tijdwinst bij rapportages", "Sneller bijsturen"],
-      en: ["One version of the truth", "Time saved on reporting", "Faster course correction"],
+      nl: ["Alle personeelsinformatie op één plek", "Snellere afhandeling van aanvragen", "Minder papierwerk"],
+      en: ["All personnel information in one place", "Faster handling of requests", "Less paperwork"],
     },
     faq: {
-      nl: [{ question: "Met welke systemen kan ARA Insights koppelen?", answer: "Dit wordt tijdens de ontwikkeling vastgesteld. Laat ons weten welke systemen u gebruikt." }],
-      en: [{ question: "Which systems can ARA Insights connect to?", answer: "This will be determined during development. Let us know which systems you use." }],
+      nl: [
+        {
+          question: "Wanneer komt ARA HR beschikbaar?",
+          answer: "ARA HR komt binnenkort beschikbaar. Laat uw interesse achter, dan houden we u op de hoogte.",
+        },
+      ],
+      en: [
+        {
+          question: "When will ARA HR be available?",
+          answer: "ARA HR is coming soon. Register your interest and we will keep you informed.",
+        },
+      ],
     },
     cta: { type: "contact" },
   },
   {
-    id: "prod-taskboard",
-    slug: "ara-taskboard",
-    name: "ARA Taskboard",
+    id: "prod-bouwflow",
+    slug: "bouwflow",
+    name: "BouwFlow",
     icon: "kanban",
     accent: "blue",
-    category: "productivity",
-    status: "in-development",
-    isSample: true,
+    brand: { kind: "logo", src: "/images/products/bouwflow-logo.png", width: 1183, height: 1010 },
+    category: "business-software",
+    status: "coming-soon",
+    isSample: false,
+    featured: true,
     tagline: {
-      nl: "Overzicht van taken en opvolging voor het hele team.",
-      en: "Task overview and follow-up for the whole team.",
+      nl: "Bouw • Installatie • Projecten",
+      en: "Construction • Installation • Projects",
     },
     summary: {
-      nl: "Een eenvoudige takenomgeving voor teams, met duidelijke verantwoordelijkheden, deadlines en voortgang.",
-      en: "A simple task environment for teams, with clear responsibilities, deadlines and progress.",
+      nl: "Projectsoftware voor bouw- en installatiebedrijven: planning, uitvoering en administratie van projecten in één overzicht.",
+      en: "Project software for construction and installation companies: planning, execution and administration of projects in one overview.",
     },
     description: {
       nl: [
-        "ARA Taskboard is een conceptproduct dat teams helpt werk te verdelen en op te volgen. Iedereen ziet wat er moet gebeuren, wie verantwoordelijk is en wat de status is.",
-        "Het ontwerp richt zich op eenvoud, zodat teams er zonder lange training mee aan de slag kunnen.",
+        "BouwFlow is ontworpen voor bedrijven in de bouw en installatietechniek. Projecten, planning, medewerkers en voortgang komen samen in één omgeving, zodat kantoor en werkvloer met dezelfde informatie werken.",
+        "Het product richt zich op overzicht en eenvoud, zodat ook teams op de bouwplaats er zonder lange training mee kunnen werken.",
       ],
       en: [
-        "ARA Taskboard is a concept product that helps teams divide and follow up on work. Everyone can see what needs to be done, who is responsible and what the status is.",
-        "The design focuses on simplicity, so teams can get started without lengthy training.",
+        "BouwFlow is designed for companies in construction and installation. Projects, planning, staff and progress come together in one environment, so the office and the work site use the same information.",
+        "The product focuses on clarity and simplicity, so teams on site can use it without lengthy training.",
       ],
     },
     problem: {
-      nl: "Taken worden via chatberichten en e-mail verdeeld en raken uit beeld. Niemand heeft een volledig overzicht.",
-      en: "Tasks are assigned via chat messages and email and get lost. Nobody has a complete overview.",
+      nl: "Bij bouw- en installatieprojecten raakt informatie verspreid over telefoon, berichten, papier en spreadsheets. Dat leidt tot misverstanden, vertraging en onduidelijkheid over de voortgang.",
+      en: "In construction and installation projects, information gets scattered across phone calls, messages, paper and spreadsheets. That leads to misunderstandings, delays and unclear progress.",
     },
     features: {
-      nl: ["Takenborden per team of project", "Deadlines en herinneringen", "Opmerkingen en bijlagen per taak", "Voortgangsoverzicht"],
-      en: ["Task boards per team or project", "Deadlines and reminders", "Comments and attachments per task", "Progress overview"],
+      nl: [
+        "Projectoverzicht met planning en voortgang",
+        "Inzet van medewerkers en ploegen",
+        "Urenregistratie per project",
+        "Documenten en foto's per project",
+      ],
+      en: [
+        "Project overview with planning and progress",
+        "Scheduling of staff and crews",
+        "Time tracking per project",
+        "Documents and photos per project",
+      ],
     },
     audience: {
-      nl: ["Kleine en middelgrote teams", "Projectteams", "Operationele afdelingen"],
-      en: ["Small and medium-sized teams", "Project teams", "Operations departments"],
+      nl: ["Bouwbedrijven", "Installatiebedrijven", "Projectleiders en uitvoerders"],
+      en: ["Construction companies", "Installation companies", "Project managers and site supervisors"],
     },
     benefits: {
-      nl: ["Minder vergeten taken", "Heldere verantwoordelijkheden", "Minder statusoverleg"],
-      en: ["Fewer forgotten tasks", "Clear responsibilities", "Fewer status meetings"],
+      nl: ["Eén actueel beeld van elk project", "Betere afstemming tussen kantoor en bouwplaats", "Minder misverstanden en vertraging"],
+      en: ["One up-to-date picture of every project", "Better coordination between office and site", "Fewer misunderstandings and delays"],
     },
     faq: {
-      nl: [{ question: "Is ARA Taskboard al beschikbaar?", answer: "Nee, het product is in ontwikkeling." }],
-      en: [{ question: "Is ARA Taskboard available yet?", answer: "No, the product is in development." }],
+      nl: [
+        {
+          question: "Wanneer komt BouwFlow beschikbaar?",
+          answer: "BouwFlow komt binnenkort beschikbaar. Laat uw interesse achter via het contactformulier, dan houden we u op de hoogte.",
+        },
+        {
+          question: "Werkt BouwFlow ook op een telefoon?",
+          answer: "BouwFlow wordt ontworpen om ook op de bouwplaats bruikbaar te zijn. De precieze mogelijkheden worden bij de lancering bekendgemaakt.",
+        },
+      ],
+      en: [
+        {
+          question: "When will BouwFlow be available?",
+          answer: "BouwFlow is coming soon. Register your interest through the contact form and we will keep you informed.",
+        },
+        {
+          question: "Does BouwFlow work on a phone?",
+          answer: "BouwFlow is being designed to be usable on the work site as well. The exact capabilities will be announced at launch.",
+        },
+      ],
     },
     cta: { type: "contact" },
   },
@@ -418,4 +423,9 @@ export function getFeaturedProducts(limit = 3): Product[] {
 
 export function hasSampleProducts(): boolean {
   return products.some((product) => product.isSample);
+}
+
+/** True when any product is not yet usable (coming soon / in development). */
+export function hasUnreleasedProducts(): boolean {
+  return products.some((product) => product.status === "coming-soon" || product.status === "in-development");
 }

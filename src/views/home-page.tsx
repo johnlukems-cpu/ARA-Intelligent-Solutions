@@ -4,7 +4,7 @@ import macawHero from "@/assets/images/macaw-hero.webp";
 import banner from "@/assets/images/ara-banner.webp";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import { getLatestArticles } from "@/content/news";
-import { getFeaturedProducts, hasSampleProducts } from "@/content/products";
+import { getFeaturedProducts, hasSampleProducts, hasUnreleasedProducts } from "@/content/products";
 import { serviceCategories } from "@/content/services";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -162,6 +162,8 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Notice tone="warning" className="mt-8">
               {t.products.sampleNotice}
             </Notice>
+          ) : hasUnreleasedProducts() ? (
+            <Notice className="mt-8">{t.products.unreleasedNotice}</Notice>
           ) : null}
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (

@@ -6,7 +6,7 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { StatusBadge } from "@/components/ui/badges";
-import { CoverArt } from "@/components/ui/cover-art";
+import { ProductVisual } from "@/components/ui/product-visual";
 
 export function ProductCard({ product, locale, headingLevel = "h3" }: { product: Product; locale: Locale; headingLevel?: "h2" | "h3" }) {
   const t = getDictionary(locale);
@@ -15,7 +15,7 @@ export function ProductCard({ product, locale, headingLevel = "h3" }: { product:
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-[var(--shadow-card)] ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)]">
       <div className="relative">
-        <CoverArt icon={product.icon} accent={product.accent} className="aspect-[16/9]" />
+        <ProductVisual product={product} className="aspect-[16/9]" />
         {product.isSample ? (
           <span className="absolute top-3 left-3 rounded-full bg-midnight/80 px-2.5 py-1 text-[0.7rem] font-bold tracking-wider text-white uppercase ring-1 ring-white/20 backdrop-blur">
             {t.products.conceptBadge}
