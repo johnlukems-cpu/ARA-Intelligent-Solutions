@@ -6,7 +6,7 @@ import { href, type RouteKey } from "@/i18n/routes";
 import { HeaderClient, type NavItem } from "./header-client";
 import { Logo } from "./logo";
 
-const navKeys = ["home", "services", "products", "pricing", "news", "cases", "about", "contact"] as const satisfies readonly RouteKey[];
+const navKeys = ["home", "services", "aiEmployees", "products", "pricing", "news", "cases", "about", "contact"] as const satisfies readonly RouteKey[];
 
 export function Header({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);

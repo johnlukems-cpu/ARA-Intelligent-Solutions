@@ -3,6 +3,7 @@ import type { ServiceCategory } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
+import { AiEmployeesTeaser } from "@/components/ai/ai-employees-teaser";
 import { ServiceBlock } from "@/components/cards/service-block";
 import { ServiceCategoryCard } from "@/components/cards/service-card";
 import { CtaBand } from "@/components/ui/cta-band";
@@ -34,6 +35,11 @@ export function ServiceCategoryPage({ category, locale }: { category: ServiceCat
               <ServiceBlock key={service.id} service={service} locale={locale} />
             ))}
           </div>
+          {category.id === "ai" ? (
+            <div className="mt-10">
+              <AiEmployeesTeaser locale={locale} />
+            </div>
+          ) : null}
           <Notice className="mt-10">{t.services.honestNote}</Notice>
         </div>
       </section>

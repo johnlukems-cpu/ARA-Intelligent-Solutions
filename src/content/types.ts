@@ -19,7 +19,16 @@ export type IconName =
   | "kanban"
   | "sparkles"
   | "newspaper"
-  | "shield";
+  | "shield"
+  | "headset"
+  | "trending"
+  | "coins"
+  | "clipboard"
+  | "inbox"
+  | "lock"
+  | "user-check"
+  | "log"
+  | "cpu";
 
 /** Accent used by generated cover art when no image is available. */
 export type Accent = "blue" | "cyan" | "yellow" | "navy";

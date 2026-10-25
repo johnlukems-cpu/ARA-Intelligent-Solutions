@@ -34,6 +34,8 @@ Requires Node.js 20.9 or newer (Next.js 16 requirement).
 | Dutch (default) | English |
 | --- | --- |
 | `/` | `/en` |
+| `/ai-medewerkers` | `/en/ai-assistants` |
+| `/prijzen` | `/en/pricing` |
 | `/diensten`, `/diensten/[slug]` | `/en/services`, `/en/services/[slug]` |
 | `/producten`, `/producten/[slug]` | `/en/products`, `/en/products/[slug]` |
 | `/nieuws`, `/nieuws/[slug]` | `/en/news`, `/en/news/[slug]` |
@@ -90,6 +92,8 @@ All content lives in `src/content/`. Pages, cards, the footer, the sitemap and s
   - `pricing` is optional. Leave it out until prices are confirmed; the page then says pricing has not been announced.
   - `cta`: `{ type: "contact" }` sends visitors to the contact form with the product pre-selected. Only use `{ type: "external", url, label }` once a working destination such as a checkout exists.
   - `isSample: true` marks illustrative placeholder entries with a "Concept" label (none at the moment).
+- **Pricing**: `pricing.ts`. Seven packages (USD), the extra Google Workspace users card, general terms and the pricing FAQ. Quote buttons open the contact form with `?topic=package:<id>` pre-selected.
+- **ARA AI Medewerkers**: `ai-employees.ts`. The three AI packages (introductory prices), the five specialisations, the five-step "how it works", separate costs, safety principles and terms. The page lives at `/ai-medewerkers`; a teaser block appears on the homepage, services, the AI service area and the pricing page.
 - **News**: create a file in `content/news/articles/`, then add it to the list in `content/news/index.ts`. Provide `translations.nl` and/or `translations.en`. The body uses structured blocks (`paragraph`, `heading`, `subheading`, `list`, `quote`, `callout`), so no HTML is needed and nothing unsafe gets rendered. Reading time is calculated automatically.
   - **Missing translations**: an article without English is still listed in the English section with an "Only available in Dutch" label. Its page shows the original text with a notice, is `noindex` and points its canonical URL at the original. The language switch on such a page goes to the news overview.
   - `isDemo: true` shows a "sample article" notice. **All seven current articles are demo content** (general, factual guidance; no company announcements). Review or replace them before launch.

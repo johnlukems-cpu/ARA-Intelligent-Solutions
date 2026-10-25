@@ -11,6 +11,7 @@ export function PageHero({
   intro,
   breadcrumbs,
   children,
+  aside,
   lang,
 }: {
   locale: Locale;
@@ -19,6 +20,8 @@ export function PageHero({
   intro?: ReactNode;
   breadcrumbs: Crumb[];
   children?: ReactNode;
+  /** Optional visual shown beside the text on large screens. */
+  aside?: ReactNode;
   lang?: string;
 }) {
   return (
@@ -30,21 +33,24 @@ export function PageHero({
       />
       <div className="container-site relative pt-10 pb-14 sm:pt-12 sm:pb-20">
         <Breadcrumbs items={breadcrumbs} locale={locale} />
-        <div className="mt-8 max-w-3xl motion-safe:animate-fade-up" lang={lang}>
-          {eyebrow ? (
-            <p className="eyebrow mb-4 text-cyan">
-              <span aria-hidden="true" className="h-px w-6 bg-current opacity-60" />
-              {eyebrow}
-            </p>
-          ) : null}
-          <h1
-            style={fitWord(title, 48)}
-            className="text-[length:min(2.25rem,var(--fit,2.25rem))] leading-[1.1] font-extrabold text-white sm:text-[length:min(3rem,var(--fit,3rem))]"
-          >
-            {title}
-          </h1>
-          {intro ? <div className="mt-5 text-lg leading-relaxed text-white/80">{intro}</div> : null}
-          {children}
+        <div className={aside ? "mt-8 grid items-center gap-12 lg:grid-cols-12" : undefined}>
+          <div className={aside ? "max-w-3xl motion-safe:animate-fade-up lg:col-span-7" : "mt-8 max-w-3xl motion-safe:animate-fade-up"} lang={lang}>
+            {eyebrow ? (
+              <p className="eyebrow mb-4 text-cyan">
+                <span aria-hidden="true" className="h-px w-6 bg-current opacity-60" />
+                {eyebrow}
+              </p>
+            ) : null}
+            <h1
+              style={fitWord(title, 48)}
+              className="text-[length:min(2.25rem,var(--fit,2.25rem))] leading-[1.1] font-extrabold text-white sm:text-[length:min(3rem,var(--fit,3rem))]"
+            >
+              {title}
+            </h1>
+            {intro ? <div className="mt-5 text-lg leading-relaxed text-white/80">{intro}</div> : null}
+            {children}
+          </div>
+          {aside ? <div className="lg:col-span-5">{aside}</div> : null}
         </div>
       </div>
     </section>

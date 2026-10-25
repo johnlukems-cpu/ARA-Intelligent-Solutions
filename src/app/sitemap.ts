@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["services", 0.9],
     ["products", 0.8],
     ["pricing", 0.8],
+    ["aiEmployees", 0.9],
     ["news", 0.8],
     ["cases", 0.6],
     ["about", 0.7],

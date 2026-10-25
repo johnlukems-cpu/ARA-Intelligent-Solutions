@@ -5,6 +5,7 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { formatUsd } from "@/lib/price";
+import { AiEmployeesTeaser } from "@/components/ai/ai-employees-teaser";
 import { PriceCard, type PriceCardData } from "@/components/pricing/price-card";
 import { ButtonLink } from "@/components/ui/button";
 import { CtaBand } from "@/components/ui/cta-band";
@@ -119,6 +120,12 @@ export function PricingPage({ locale }: { locale: Locale }) {
               ))}
             </ul>
           </article>
+        </div>
+      </section>
+
+      <section className="pb-4 pt-16 sm:pt-20" aria-label={t.aiEmployees.brand}>
+        <div className="container-site">
+          <AiEmployeesTeaser locale={locale} />
         </div>
       </section>
 

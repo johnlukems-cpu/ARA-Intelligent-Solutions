@@ -10,6 +10,7 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { toArticleSummaries } from "@/lib/articles";
+import { AiEmployeesTeaser } from "@/components/ai/ai-employees-teaser";
 import { ArticleCard } from "@/components/cards/article-card";
 import { ProductCard } from "@/components/cards/product-card";
 import { ServiceCategoryCard } from "@/components/cards/service-card";
@@ -124,6 +125,13 @@ export function HomePage({ locale }: { locale: Locale }) {
               <ServiceCategoryCard key={category.id} category={category} locale={locale} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ARA AI Medewerkers */}
+      <section className="bg-surface pb-20 sm:pb-24" aria-label={t.aiEmployees.brand}>
+        <div className="container-site">
+          <AiEmployeesTeaser locale={locale} />
         </div>
       </section>
 

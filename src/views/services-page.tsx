@@ -5,6 +5,7 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { fitWord } from "@/lib/fit-word";
+import { AiEmployeesTeaser } from "@/components/ai/ai-employees-teaser";
 import { ServiceBlock } from "@/components/cards/service-block";
 import { CtaBand } from "@/components/ui/cta-band";
 import { Icon } from "@/components/ui/icon";
@@ -41,6 +42,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
 
       <div className="bg-surface py-16 sm:py-20">
         <div className="container-site space-y-20">
+          <AiEmployeesTeaser locale={locale} />
           <Notice>{t.services.honestNote}</Notice>
           {serviceCategories.map((category) => (
             <section key={category.id} id={category.id} aria-labelledby={`${category.id}-title`} className="scroll-mt-28">

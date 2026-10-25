@@ -1,5 +1,14 @@
 import {
   AppWindow,
+  ClipboardList,
+  Coins,
+  Cpu,
+  Headset,
+  Inbox,
+  Lock,
+  ScrollText,
+  TrendingUp,
+  UserCheck,
   Bot,
   Brain,
   CalendarDays,
@@ -41,6 +50,15 @@ const icons: Record<IconName, LucideIcon> = {
   sparkles: Sparkles,
   newspaper: Newspaper,
   shield: ShieldCheck,
+  headset: Headset,
+  trending: TrendingUp,
+  coins: Coins,
+  clipboard: ClipboardList,
+  inbox: Inbox,
+  lock: Lock,
+  "user-check": UserCheck,
+  log: ScrollText,
+  cpu: Cpu,
 };
 
 export function Icon({ name, ...props }: { name: IconName } & LucideProps) {

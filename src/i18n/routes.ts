@@ -9,6 +9,7 @@ export const routeSegments = {
   services: { nl: "diensten", en: "services" },
   products: { nl: "producten", en: "products" },
   pricing: { nl: "prijzen", en: "pricing" },
+  aiEmployees: { nl: "ai-medewerkers", en: "ai-assistants" },
   news: { nl: "nieuws", en: "news" },
   cases: { nl: "cases", en: "cases" },
   about: { nl: "over-ons", en: "about" },

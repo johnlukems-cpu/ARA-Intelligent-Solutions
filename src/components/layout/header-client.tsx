@@ -127,7 +127,8 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
 
         <nav aria-label={labels.mainNav} className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {items.map((item) => {
+            {/* The logo links home, so the desktop bar leaves "Home" out to make room. */}
+            {items.filter((item) => item.href !== homeHref).map((item) => {
               const active = isActive(pathname, item, homeHref);
               return (
                 <li key={item.key}>
@@ -135,7 +136,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative rounded-md px-3 py-2 text-[0.92rem] font-medium transition-colors",
+                      "relative rounded-md px-2 py-2 text-[0.9rem] font-medium whitespace-nowrap transition-colors xl:px-3",
                       active ? "text-cyan" : "text-white/85 hover:text-white",
                     )}
                   >
@@ -143,7 +144,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-cyan transition-opacity",
+                        "absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-cyan transition-opacity xl:inset-x-3",
                         active ? "opacity-100" : "opacity-0",
                       )}
                     />

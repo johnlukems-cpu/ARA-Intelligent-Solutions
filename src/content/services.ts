@@ -56,6 +56,31 @@ export const serviceCategories: ServiceCategory[] = [
         },
       },
       {
+        id: "ai-employees",
+        icon: "cpu",
+        name: { nl: "ARA AI Medewerkers", en: "ARA AI Assistants" },
+        description: {
+          nl: "AI-medewerkers die binnen vaste regels en toegangsrechten concrete werkzaamheden uitvoeren: informatie verwerken, taken uitvoeren en uw bestaande bedrijfssoftware gebruiken.",
+          en: "AI assistants that carry out concrete work within fixed rules and access rights: processing information, performing tasks and using your existing business software.",
+        },
+        problem: {
+          nl: "Terugkerende werkzaamheden zoals e-mails verwerken, aanvragen registreren en rapportages voorbereiden kosten elke dag veel tijd.",
+          en: "Recurring work such as processing emails, registering requests and preparing reports takes a lot of time every day.",
+        },
+        examples: {
+          nl: [
+            "Inkomende e-mails categoriseren en opvolgtaken aanmaken",
+            "Klantaanvragen registreren en doorsturen",
+            "Factuurgegevens verzamelen voor menselijke controle",
+          ],
+          en: [
+            "Categorizing incoming emails and creating follow-up tasks",
+            "Registering and forwarding customer requests",
+            "Collecting invoice data for human review",
+          ],
+        },
+      },
+      {
         id: "ai-assistants",
         icon: "bot",
         name: { nl: "AI-assistenten en kennissystemen", en: "AI assistants and knowledge systems" },
