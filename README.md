@@ -74,7 +74,7 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 | `src/assets/images/ara-logo-dark.webp` | Header and footer logo, 404 page | The official ARA logo with the macaw (unchanged), on a transparent background for dark surfaces (`scripts/brand-assets/make_logo_dark.py`). |
 | `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular ARA emblem (unchanged) |
 | `src/assets/images/robot-hero.webp` | Homepage hero, About page | ARA robot artwork (robot at a laptop) with its own background; the outer edges fade into the hero |
-| `src/assets/images/robot-services.webp` | Homepage about card, About page | ARA robot with service tiles (from the promo artwork, without its headline) |
+| `src/assets/images/robot-office.webp` | Homepage about card, About page | The same robot artwork without edge fades (robot fully visible) |
 | `src/assets/images/robot-ai-process.webp`, `robot-<specialisation>.webp` | AI-medewerkers hero and specialisation cards | AI-medewerkers infographic |
 | `public/og/ara-og.jpg` | Social preview image | ARA promo artwork |
 | `src/assets/images/suriname-river.webp` | Call-to-action band | Original brand artwork |

@@ -108,7 +108,7 @@ const nl = {
     aboutText:
       "ARA Intelligent Solutions is ontstaan uit de overtuiging dat technologie mensen en bedrijven vooruit moet helpen. Met AI, automatisering, software en digitale oplossingen bouwen wij aan een slimmere en sterkere toekomst — vanuit Suriname, met een blik op de wereld.",
     aboutCta: "Meer over ons",
-    aboutImageAlt: "ARA-robot met een duim omhoog naast tegels voor websites, AI-medewerkers, automatisering, software en IT-support",
+    aboutImageAlt: "ARA-robot achter een laptop met iconen voor websites, AI, automatisering, software en IT-support",
     whyEyebrow: "Waarom ARA?",
     whyTitle: "Een technologiepartner die meedenkt.",
     why: [
@@ -269,7 +269,7 @@ const nl = {
     responsibleTitle: "Verantwoorde technologie",
     responsibleText:
       "We gaan zorgvuldig om met gegevens, kiezen voor transparante oplossingen en zijn eerlijk over beperkingen. Zo bouwen we aan vertrouwen — bij u en bij uw klanten.",
-    logoAlt: "De ARA-robot steekt een duim omhoog, naast tegels voor websites, AI-medewerkers, automatisering, software en IT-support",
+    logoAlt: "De vriendelijke ARA-robot aan het werk achter een laptop in een modern kantoor",
     bannerAlt: "ARA-robot aan het werk achter een laptop, met iconen voor websites, AI, automatisering, software en IT-support",
   },
   pricing: {
@@ -544,7 +544,7 @@ const en: Dictionary = {
     aboutText:
       "ARA Intelligent Solutions is built on the belief that technology should help people and businesses move forward. With AI, automation, software and digital solutions we build a smarter and stronger future — from Suriname, with a global outlook.",
     aboutCta: "More about us",
-    aboutImageAlt: "ARA robot giving a thumbs up next to tiles for websites, AI assistants, automation, software and IT support",
+    aboutImageAlt: "ARA robot at a laptop with icons for websites, AI, automation, software and IT support",
     whyEyebrow: "Why ARA?",
     whyTitle: "A technology partner that thinks along.",
     why: [
@@ -704,7 +704,7 @@ const en: Dictionary = {
     responsibleTitle: "Responsible technology",
     responsibleText:
       "We handle data carefully, choose transparent solutions and are honest about limitations. That is how we build trust — with you and with your customers.",
-    logoAlt: "The ARA robot giving a thumbs up, next to tiles for websites, AI assistants, automation, software and IT support",
+    logoAlt: "The friendly ARA robot at work at a laptop in a modern office",
     bannerAlt: "ARA robot at work at a laptop, with icons for websites, AI, automation, software and IT support",
   },
   pricing: {

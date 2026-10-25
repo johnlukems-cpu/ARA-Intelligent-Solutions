@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Gem, Lightbulb, Layers, Users, Target, Workflow, Sparkles, TrendingUp } from "lucide-react";
 import robotHero from "@/assets/images/robot-hero.webp";
-import robotServices from "@/assets/images/robot-services.webp";
+import robotOffice from "@/assets/images/robot-office.webp";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import { getLatestArticles } from "@/content/news";
 import { getFeaturedProducts, hasSampleProducts, hasUnreleasedProducts } from "@/content/products";
@@ -184,11 +184,11 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container-site grid gap-10 lg:grid-cols-12">
           <div className="on-dark relative isolate overflow-hidden rounded-[2rem] bg-midnight text-white shadow-xl lg:col-span-7">
             <Image
-              src={robotServices}
+              src={robotOffice}
               alt={t.home.aboutImageAlt}
               placeholder="blur"
               sizes="(min-width: 1024px) 55vw, 100vw"
-              className="aspect-[16/9] h-auto w-full object-cover object-[center_30%]"
+              className="h-auto w-full"
             />
             <div className="p-8 sm:p-10">
               <p className="eyebrow text-cyan">{t.home.aboutEyebrow}</p>

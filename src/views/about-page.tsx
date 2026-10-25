@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Compass, Eye, Globe2, HeartHandshake, MapPin, Scale, ShieldCheck, Target, Crosshair, Rocket } from "lucide-react";
-import robotServices from "@/assets/images/robot-services.webp";
+import robotOffice from "@/assets/images/robot-office.webp";
 import robotHero from "@/assets/images/robot-hero.webp";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -45,7 +45,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="py-16 sm:py-20" aria-labelledby="brand-title">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2">
           <div className="overflow-hidden rounded-[2rem] shadow-xl">
-            <Image src={robotServices} alt={a.logoAlt} placeholder="blur" sizes="(min-width: 1024px) 45vw, 100vw" className="h-auto w-full" />
+            <Image src={robotOffice} alt={a.logoAlt} placeholder="blur" sizes="(min-width: 1024px) 45vw, 100vw" className="h-auto w-full" />
           </div>
           <div>
             <SectionHeading id="brand-title" eyebrow="ARA" title={a.brandTitle} />

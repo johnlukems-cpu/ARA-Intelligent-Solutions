@@ -4,7 +4,8 @@ The ARA logo (with the macaw) and the favicons are NOT generated here; they
 stay unchanged (see make_logo_dark.py).
 
 Inputs (the three supplied 1536x1024 artworks):
-  9.webp   promo with the "ARA | INTELLIGENT SOLUTIONS" wordmark and robot
+  9.webp   promo (used for the social preview image only; its headline overlaps
+           the robot, so it is not used for robot crops)
   10.webp  AI-medewerkers infographic (robot per specialisation)
   11.webp  robot at a laptop with service icons (no text)
 
@@ -44,11 +45,11 @@ def feathered(img, edge_frac=0.06):
 # 2. Homepage hero: the full robot artwork with its own background, soft edges.
 feathered(im11).save(assets / "robot-hero.webp", "WEBP", quality=88, alpha_quality=90, method=6)
 
-# 3. Robot with service tiles (from the promo, without its headline text).
-im9.crop((768, 70, 1536, 636)).save(assets / "robot-services.webp", "WEBP", quality=86, method=6)
+# 3. The same artwork without edge fades, for cards (robot fully visible).
+im11.save(assets / "robot-office.webp", "WEBP", quality=86, method=6)
 
 # 4. AI-medewerkers: process robot (top of the infographic) and one robot per specialisation.
-im10.crop((600, 0, 1240, 392)).save(assets / "robot-ai-process.webp", "WEBP", quality=86, method=6)
+im10.crop((584, 0, 1240, 392)).save(assets / "robot-ai-process.webp", "WEBP", quality=86, method=6)
 for name, (x0, x1) in {
     "administrative": (4, 304),
     "customer-service": (314, 609),
