@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Compass, Eye, Globe2, HeartHandshake, MapPin, Scale, ShieldCheck, Target, Crosshair, Rocket } from "lucide-react";
-import logoFull from "@/assets/images/ara-logo-full.webp";
-import brandCover from "@/assets/images/ara-brand-cover.webp";
+import robotServices from "@/assets/images/robot-services.webp";
+import robotHero from "@/assets/images/robot-hero.webp";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
@@ -44,8 +44,8 @@ export function AboutPage({ locale }: { locale: Locale }) {
       {/* Brand story */}
       <section className="py-16 sm:py-20" aria-labelledby="brand-title">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2">
-          <div className="rounded-[2rem] bg-white p-6 shadow-[var(--shadow-card)] ring-1 ring-line">
-            <Image src={logoFull} alt={a.logoAlt} placeholder="blur" sizes="(min-width: 1024px) 45vw, 100vw" className="h-auto w-full" />
+          <div className="overflow-hidden rounded-[2rem] shadow-xl">
+            <Image src={robotServices} alt={a.logoAlt} placeholder="blur" sizes="(min-width: 1024px) 45vw, 100vw" className="h-auto w-full" />
           </div>
           <div>
             <SectionHeading id="brand-title" eyebrow="ARA" title={a.brandTitle} />
@@ -101,11 +101,11 @@ export function AboutPage({ locale }: { locale: Locale }) {
           </div>
           <div className="relative overflow-hidden rounded-[2rem] ring-1 ring-white/15">
             <Image
-              src={brandCover}
+              src={robotHero}
               alt={a.bannerAlt}
               placeholder="blur"
               sizes="(min-width: 1024px) 45vw, 100vw"
-              className="h-full min-h-72 w-full object-cover"
+              className="h-auto w-full object-contain"
             />
           </div>
         </div>

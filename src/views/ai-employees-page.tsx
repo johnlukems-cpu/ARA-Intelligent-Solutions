@@ -1,4 +1,11 @@
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import robotAdministrative from "@/assets/images/robot-administrative.webp";
+import robotProcess from "@/assets/images/robot-ai-process.webp";
+import robotCustomerService from "@/assets/images/robot-customer-service.webp";
+import robotFinance from "@/assets/images/robot-finance.webp";
+import robotOperations from "@/assets/images/robot-operations.webp";
+import robotSales from "@/assets/images/robot-sales.webp";
 import { ArrowRight, CircleCheck, CircleMinus, Info, TriangleAlert } from "lucide-react";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import {
@@ -14,7 +21,6 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { formatUsd } from "@/lib/price";
-import { AiWorkerIllustration } from "@/components/ai/ai-worker-illustration";
 import { PriceCard } from "@/components/pricing/price-card";
 import { ButtonLink } from "@/components/ui/button";
 import { CtaBand } from "@/components/ui/cta-band";
@@ -23,6 +29,14 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { Notice } from "@/components/ui/notice";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
+
+const specRobots: Record<string, StaticImageData> = {
+  administrative: robotAdministrative,
+  "customer-service": robotCustomerService,
+  sales: robotSales,
+  finance: robotFinance,
+  operations: robotOperations,
+};
 
 export function AiEmployeesPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -71,7 +85,19 @@ export function AiEmployeesPage({ locale }: { locale: Locale }) {
             ))}
           </>
         }
-        aside={<AiWorkerIllustration locale={locale} className="mx-auto w-full max-w-md" />}
+        aside={
+          <div className="relative mx-auto w-full max-w-lg">
+            <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-full bg-electric/25 blur-3xl" />
+            <Image
+              src={robotProcess}
+              alt={a.heroImageAlt}
+              priority
+              placeholder="blur"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="h-auto w-full rounded-[1.75rem] shadow-2xl ring-1 ring-white/15"
+            />
+          </div>
+        }
       >
         <div className="mt-8 flex flex-wrap gap-3">
           <ButtonLink href={generalQuote} size="lg" arrow>
@@ -160,32 +186,43 @@ export function AiEmployeesPage({ locale }: { locale: Locale }) {
               <li key={spec.id}>
                 <article
                   aria-labelledby={`spec-${spec.id}`}
-                  className="flex h-full flex-col rounded-[var(--radius-card)] bg-white p-6 shadow-[var(--shadow-card)] ring-1 ring-line"
+                  className="flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-[var(--shadow-card)] ring-1 ring-line"
                 >
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-midnight text-cyan shadow-[var(--shadow-glow)]">
-                    <Icon name={spec.icon} className="size-6" />
-                  </span>
-                  <h3 id={`spec-${spec.id}`} className="mt-5 text-xl leading-snug font-extrabold">
-                    {spec.name[locale]}
-                  </h3>
-                  <p className="mt-4 text-sm font-bold text-midnight">{a.helpsWith}</p>
-                  <ul className="mt-2 flex-1 space-y-2">
-                    {spec.tasks[locale].map((task) => (
-                      <li key={task} className="flex gap-2 text-sm leading-relaxed text-ink">
-                        <CircleCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-electric-600" />
-                        {task}
-                      </li>
-                    ))}
-                  </ul>
-                  {spec.note ? (
-                    <p className="mt-4 flex gap-2 rounded-xl bg-macaw/10 p-3 text-sm leading-relaxed text-midnight ring-1 ring-macaw/40">
-                      <TriangleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-macaw-600" />
-                      {spec.note[locale]}
-                    </p>
+                  {specRobots[spec.id] ? (
+                    <Image
+                      src={specRobots[spec.id]!}
+                      alt=""
+                      placeholder="blur"
+                      sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
+                      className="aspect-[2/1] h-auto w-full bg-midnight object-cover"
+                    />
                   ) : null}
-                  <ButtonLink href={`${contact}?topic=ai-employee:${spec.id}`} variant="secondary" className="mt-6 w-full" arrow>
-                    {t.pricing.requestQuote}
-                  </ButtonLink>
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="flex size-12 items-center justify-center rounded-2xl bg-midnight text-cyan shadow-[var(--shadow-glow)]">
+                      <Icon name={spec.icon} className="size-6" />
+                    </span>
+                    <h3 id={`spec-${spec.id}`} className="mt-5 text-xl leading-snug font-extrabold">
+                      {spec.name[locale]}
+                    </h3>
+                    <p className="mt-4 text-sm font-bold text-midnight">{a.helpsWith}</p>
+                    <ul className="mt-2 flex-1 space-y-2">
+                      {spec.tasks[locale].map((task) => (
+                        <li key={task} className="flex gap-2 text-sm leading-relaxed text-ink">
+                          <CircleCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-electric-600" />
+                          {task}
+                        </li>
+                      ))}
+                    </ul>
+                    {spec.note ? (
+                      <p className="mt-4 flex gap-2 rounded-xl bg-macaw/10 p-3 text-sm leading-relaxed text-midnight ring-1 ring-macaw/40">
+                        <TriangleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-macaw-600" />
+                        {spec.note[locale]}
+                      </p>
+                    ) : null}
+                    <ButtonLink href={`${contact}?topic=ai-employee:${spec.id}`} variant="secondary" className="mt-6 w-full" arrow>
+                      {t.pricing.requestQuote}
+                    </ButtonLink>
+                  </div>
                 </article>
               </li>
             ))}

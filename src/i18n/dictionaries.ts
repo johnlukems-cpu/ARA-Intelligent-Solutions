@@ -81,7 +81,7 @@ const nl = {
     secondaryCta: "Neem contact op",
     heroPoints: ["Slimmere processen", "Praktische AI", "Schaalbare software"],
     heroImageAlt:
-      "Blauw-gele ara zittend op een tak in het regenwoud, met op de achtergrond een rivier in Suriname bij zonsondergang",
+      "Vriendelijke witte ARA-robot achter een laptop in een modern kantoor, met zwevende iconen voor websites, AI, automatisering, software en IT-support",
     signature: "Van Suriname naar een slimmere toekomst.",
     servicesEyebrow: "Onze diensten",
     servicesTitle: "Van intelligentie naar impact.",
@@ -108,7 +108,7 @@ const nl = {
     aboutText:
       "ARA Intelligent Solutions is ontstaan uit de overtuiging dat technologie mensen en bedrijven vooruit moet helpen. Met AI, automatisering, software en digitale oplossingen bouwen wij aan een slimmere en sterkere toekomst — vanuit Suriname, met een blik op de wereld.",
     aboutCta: "Meer over ons",
-    aboutImageAlt: "ARA Intelligent Solutions-banner met de blauw-gele ara en het Surinaamse regenwoud",
+    aboutImageAlt: "ARA-robot met een duim omhoog naast tegels voor websites, AI-medewerkers, automatisering, software en IT-support",
     whyEyebrow: "Waarom ARA?",
     whyTitle: "Een technologiepartner die meedenkt.",
     why: [
@@ -256,9 +256,9 @@ const nl = {
       "Mensen blijven betrokken bij beslissingen met impact; AI ondersteunt, de mens beslist.",
       "We documenteren wat we bouwen, zodat u niet afhankelijk wordt van één partij.",
     ],
-    brandTitle: "Waarom de ara?",
+    brandTitle: "Maak kennis met onze robot",
     brandText:
-      "Onze naam en ons beeldmerk zijn geïnspireerd op de blauw-gele ara, een vogel die thuishoort in de natuur van Suriname. Voor ons staat de ara voor intelligentie, overzicht, aanpassingsvermogen, precisie en vooruitgang — eigenschappen die we in ons werk willen terugzien.",
+      "Onze vriendelijke ARA-robot staat voor wat wij doen: technologie die met u meewerkt. De robot neemt terugkerend werk uit handen, werkt met uw bestaande systemen en laat de belangrijke beslissingen aan u — met intelligentie, overzicht, aanpassingsvermogen, precisie en vooruitgang als uitgangspunt.",
     qualities: ["Intelligentie", "Overzicht", "Aanpassingsvermogen", "Precisie", "Vooruitgang"],
     surinameTitle: "Geworteld in Suriname",
     surinameText:
@@ -269,8 +269,8 @@ const nl = {
     responsibleTitle: "Verantwoorde technologie",
     responsibleText:
       "We gaan zorgvuldig om met gegevens, kiezen voor transparante oplossingen en zijn eerlijk over beperkingen. Zo bouwen we aan vertrouwen — bij u en bij uw klanten.",
-    logoAlt: "Logo van ARA Intelligent Solutions met de blauw-gele ara",
-    bannerAlt: "ARA Intelligent Solutions-banner met de ara en het Surinaamse regenwoud bij zonsopkomst",
+    logoAlt: "De ARA-robot steekt een duim omhoog, naast tegels voor websites, AI-medewerkers, automatisering, software en IT-support",
+    bannerAlt: "ARA-robot aan het werk achter een laptop, met iconen voor websites, AI, automatisering, software en IT-support",
   },
   pricing: {
     eyebrow: "Prijzen",
@@ -358,6 +358,7 @@ const nl = {
       "AI-medewerkers die informatie verwerken, taken uitvoeren en uw bestaande bedrijfssoftware gebruiken, binnen vaste regels en met controle waar het telt.",
     teaserCta: "Ontdek AI-medewerkers",
     teaserFrom: "Vanaf $250 USD",
+    heroImageAlt: "ARA-robot achter een laptop met panelen voor analyse, verwerken, uitvoeren en resultaat",
     illTitle: "AI-medewerker · Administratie",
     illStatus: "Actief",
     illSteps: ["Nieuwe e-mail ontvangen", "Gecategoriseerd als offerteaanvraag", "Taak aangemaakt voor opvolging", "Wacht op uw goedkeuring"],
@@ -516,7 +517,7 @@ const en: Dictionary = {
     secondaryCta: "Get in touch",
     heroPoints: ["Smarter processes", "Practical AI", "Scalable software"],
     heroImageAlt:
-      "Blue-and-yellow macaw perched on a branch in the rainforest, with a river in Suriname at sunset in the background",
+      "Friendly white ARA robot at a laptop in a modern office, with floating icons for websites, AI, automation, software and IT support",
     signature: "From Suriname to a smarter tomorrow.",
     servicesEyebrow: "Our services",
     servicesTitle: "From intelligence to impact.",
@@ -543,7 +544,7 @@ const en: Dictionary = {
     aboutText:
       "ARA Intelligent Solutions is built on the belief that technology should help people and businesses move forward. With AI, automation, software and digital solutions we build a smarter and stronger future — from Suriname, with a global outlook.",
     aboutCta: "More about us",
-    aboutImageAlt: "ARA Intelligent Solutions banner featuring the blue-and-yellow macaw and the Surinamese rainforest",
+    aboutImageAlt: "ARA robot giving a thumbs up next to tiles for websites, AI assistants, automation, software and IT support",
     whyEyebrow: "Why ARA?",
     whyTitle: "A technology partner that thinks along.",
     why: [
@@ -690,9 +691,9 @@ const en: Dictionary = {
       "People stay involved in decisions that matter; AI supports, people decide.",
       "We document what we build, so you never depend on a single party.",
     ],
-    brandTitle: "Why the macaw?",
+    brandTitle: "Meet our robot",
     brandText:
-      "Our name and emblem are inspired by the blue-and-yellow macaw, a bird at home in the nature of Suriname. To us, the macaw stands for intelligence, vision, adaptability, precision and forward movement — qualities we want to see reflected in our work.",
+      "Our friendly ARA robot stands for what we do: technology that works alongside you. The robot takes recurring work off your hands, works with your existing systems and leaves the important decisions to you — guided by intelligence, vision, adaptability, precision and forward movement.",
     qualities: ["Intelligence", "Vision", "Adaptability", "Precision", "Forward movement"],
     surinameTitle: "Rooted in Suriname",
     surinameText:
@@ -703,8 +704,8 @@ const en: Dictionary = {
     responsibleTitle: "Responsible technology",
     responsibleText:
       "We handle data carefully, choose transparent solutions and are honest about limitations. That is how we build trust — with you and with your customers.",
-    logoAlt: "ARA Intelligent Solutions logo featuring the blue-and-yellow macaw",
-    bannerAlt: "ARA Intelligent Solutions banner featuring the macaw and the Surinamese rainforest at sunrise",
+    logoAlt: "The ARA robot giving a thumbs up, next to tiles for websites, AI assistants, automation, software and IT support",
+    bannerAlt: "ARA robot at work at a laptop, with icons for websites, AI, automation, software and IT support",
   },
   pricing: {
     eyebrow: "Pricing",
@@ -792,6 +793,7 @@ const en: Dictionary = {
       "AI assistants that process information, perform tasks and use your existing business software, within fixed rules and with control where it matters.",
     teaserCta: "Discover AI assistants",
     teaserFrom: "From $250 USD",
+    heroImageAlt: "ARA robot at a laptop with panels for analysis, processing, execution and result",
     illTitle: "AI assistant · Administration",
     illStatus: "Active",
     illSteps: ["New email received", "Categorized as a quote request", "Follow-up task created", "Awaiting your approval"],

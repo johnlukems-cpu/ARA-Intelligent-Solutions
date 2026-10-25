@@ -71,15 +71,15 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 
 | File | Use | Source |
 | --- | --- | --- |
-| `src/assets/images/ara-logo-dark.webp` | Header and footer logo, 404 page | Derived from the original full logo: white background removed (transparent) and the navy lettering turned white for dark backgrounds. The macaw artwork and proportions are unchanged. |
-| `src/assets/images/ara-logo-full.webp` | About page (on a white card) | Original full logo on white |
-| `src/assets/images/macaw-hero.webp` | Homepage hero | Original brand cover (1600×900), cropped to x 0–780: the complete macaw plus clear sky in front of the beak. The baked-in brand text inside that crop was replaced with matching night sky, and only bird-free edges fade into transparency. The source frame itself cuts the very tips of the left wing feathers. |
-| `src/assets/images/ara-banner.webp`, `ara-brand-cover.webp`, `suriname-river.webp` | Homepage about card, About page, call-to-action band | Original brand artwork |
-| `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular emblem |
+| `src/assets/images/ara-logo-dark.webp` | Header and footer logo, 404 page | The official ARA logo with the macaw (unchanged), on a transparent background for dark surfaces (`scripts/brand-assets/make_logo_dark.py`). |
+| `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular ARA emblem (unchanged) |
+| `src/assets/images/robot-hero.webp` | Homepage hero, About page | ARA robot artwork (robot at a laptop) with its own background; the outer edges fade into the hero |
+| `src/assets/images/robot-services.webp` | Homepage about card, About page | ARA robot with service tiles (from the promo artwork, without its headline) |
+| `src/assets/images/robot-ai-process.webp`, `robot-<specialisation>.webp` | AI-medewerkers hero and specialisation cards | AI-medewerkers infographic |
+| `public/og/ara-og.jpg` | Social preview image | ARA promo artwork |
+| `src/assets/images/suriname-river.webp` | Call-to-action band | Original brand artwork |
 
-`scripts/brand-assets/` contains the Python (Pillow + NumPy) scripts that generate the logo variant and the hero image from the original files, for example `python3 scripts/brand-assets/make_logo_dark.py <original-logo> out.webp`.
-
-**For an even sharper header logo, ask the designer for a vector (SVG) version of the logo**, ideally a horizontal lockup for dark backgrounds. The current logo is a raster derivative, and in the original lockup the `INTELLIGENT SOLUTIONS` line is small relative to the macaw, so it is only just legible at header size. It reads clearly in the larger footer version.
+Apart from the logo and favicons, the macaw imagery has been replaced by the ARA robot. `scripts/brand-assets/make_robot_assets.py` regenerates the robot images from the three supplied artworks: `python3 scripts/brand-assets/make_robot_assets.py 9.webp 10.webp 11.webp .`
 
 ## Editing content
 

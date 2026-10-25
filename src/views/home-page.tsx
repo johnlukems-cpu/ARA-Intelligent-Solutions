@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Gem, Lightbulb, Layers, Users, Target, Workflow, Sparkles, TrendingUp } from "lucide-react";
-import macawHero from "@/assets/images/macaw-hero.webp";
-import banner from "@/assets/images/ara-banner.webp";
+import robotHero from "@/assets/images/robot-hero.webp";
+import robotServices from "@/assets/images/robot-services.webp";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import { getLatestArticles } from "@/content/news";
 import { getFeaturedProducts, hasSampleProducts, hasUnreleasedProducts } from "@/content/products";
@@ -91,21 +91,19 @@ export function HomePage({ locale }: { locale: Locale }) {
             </ul>
           </div>
 
-          {/* The image keeps its intrinsic ratio (no forced aspect, no cover-crop), so the
-              complete macaw is always visible. Its edges are feathered into transparency
-              (only where there is no bird), letting the hero background show through. */}
-          <figure className="relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:col-span-6 lg:mr-0 lg:max-w-[32rem]">
-            <div aria-hidden="true" className="absolute inset-[8%] -z-10 rounded-full bg-electric/30 blur-3xl" />
-            <div aria-hidden="true" className="absolute top-[12%] right-[10%] -z-10 size-1/3 rounded-full bg-cyan/15 blur-3xl" />
+          {/* The ARA robot with its own office background; only the outer edges fade
+              into the hero. Intrinsic 3:2 ratio, never cropped. */}
+          <figure className="relative mx-auto w-full max-w-xl lg:col-span-6 lg:max-w-none">
+            <div aria-hidden="true" className="absolute inset-[6%] -z-10 rounded-full bg-electric/30 blur-3xl" />
             <Image
-              src={macawHero}
+              src={robotHero}
               alt={t.home.heroImageAlt}
               priority
               placeholder="blur"
-              sizes="(min-width: 1024px) 32rem, (min-width: 640px) 26rem, 22rem"
+              sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, (min-width: 640px) 36rem, 100vw"
               className="h-auto w-full object-contain"
             />
-            <figcaption className="relative -mt-6 pr-[10%] text-right font-display text-base font-semibold text-white italic drop-shadow-[0_2px_8px_rgb(6_23_46/0.9)] sm:-mt-8 sm:text-lg">
+            <figcaption className="relative -mt-4 pr-[6%] text-right font-display text-base font-semibold text-white italic drop-shadow-[0_2px_8px_rgb(6_23_46/0.9)] sm:-mt-6 sm:text-lg">
               {t.home.signature}
               <span aria-hidden="true" className="mt-2 ml-auto block h-0.5 w-16 rounded-full bg-macaw" />
             </figcaption>
@@ -186,11 +184,11 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container-site grid gap-10 lg:grid-cols-12">
           <div className="on-dark relative isolate overflow-hidden rounded-[2rem] bg-midnight text-white shadow-xl lg:col-span-7">
             <Image
-              src={banner}
+              src={robotServices}
               alt={t.home.aboutImageAlt}
               placeholder="blur"
               sizes="(min-width: 1024px) 55vw, 100vw"
-              className="aspect-[16/8] h-auto w-full object-cover object-[center_35%]"
+              className="aspect-[16/9] h-auto w-full object-cover object-[center_30%]"
             />
             <div className="p-8 sm:p-10">
               <p className="eyebrow text-cyan">{t.home.aboutEyebrow}</p>
