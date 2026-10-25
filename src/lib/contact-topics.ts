@@ -1,3 +1,4 @@
+import { pricingPackages } from "@/content/pricing";
 import { products } from "@/content/products";
 import { serviceCategories } from "@/content/services";
 import type { Locale } from "@/i18n/config";
@@ -6,8 +7,12 @@ import { OTHER_TOPIC } from "./contact";
 export type TopicGroup = { label: string; options: { value: string; label: string }[] };
 
 /** Topics offered in the contact form, grouped by service area and products. */
-export function getContactTopicGroups(locale: Locale, labels: { products: string }): TopicGroup[] {
+export function getContactTopicGroups(locale: Locale, labels: { products: string; packages: string }): TopicGroup[] {
   return [
+    {
+      label: labels.packages,
+      options: pricingPackages.map((item) => ({ value: `package:${item.id}`, label: item.name[locale] })),
+    },
     ...serviceCategories.map((category) => ({
       label: category.name[locale],
       options: category.services.map((service) => ({ value: service.id, label: service.name[locale] })),
@@ -24,12 +29,17 @@ export function getContactTopicIds(): string[] {
   return [
     ...serviceCategories.flatMap((category) => category.services.map((service) => service.id)),
     ...products.map((product) => `product:${product.slug}`),
+    ...pricingPackages.map((item) => `package:${item.id}`),
     OTHER_TOPIC,
   ];
 }
 
 export function getTopicLabel(value: string, locale: Locale): string {
   if (value === OTHER_TOPIC) return locale === "nl" ? "Anders" : "Other";
+  if (value.startsWith("package:")) {
+    const item = pricingPackages.find((p) => `package:${p.id}` === value);
+    return item ? `${locale === "nl" ? "Pakket" : "Package"}: ${item.name[locale]}` : value;
+  }
   if (value.startsWith("product:")) {
     const product = products.find((p) => `product:${p.slug}` === value);
     return product ? `Product: ${product.name}` : value;

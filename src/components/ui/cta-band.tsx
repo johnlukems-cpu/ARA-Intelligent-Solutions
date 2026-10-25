@@ -12,12 +12,15 @@ export function CtaBand({
   text,
   buttonLabel,
   buttonHref,
+  secondary,
 }: {
   locale: Locale;
   title?: string;
   text?: string;
   buttonLabel?: string;
   buttonHref?: string;
+  /** Optional second button (outline style). */
+  secondary?: { label: string; href: string };
 }) {
   const t = getDictionary(locale);
   return (
@@ -38,9 +41,16 @@ export function CtaBand({
           </h2>
           <p className="mt-3 text-lg text-white/80">{text ?? t.home.ctaText}</p>
         </div>
-        <ButtonLink href={buttonHref ?? href(locale, "contact")} size="lg" arrow>
-          {buttonLabel ?? t.home.ctaButton}
-        </ButtonLink>
+        <div className="flex flex-wrap gap-3">
+          <ButtonLink href={buttonHref ?? href(locale, "contact")} size="lg" arrow>
+            {buttonLabel ?? t.home.ctaButton}
+          </ButtonLink>
+          {secondary ? (
+            <ButtonLink href={secondary.href} size="lg" variant="outline-light" arrow>
+              {secondary.label}
+            </ButtonLink>
+          ) : null}
+        </div>
       </div>
     </section>
   );

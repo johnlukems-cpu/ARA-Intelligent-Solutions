@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["home", 1],
     ["services", 0.9],
     ["products", 0.8],
+    ["pricing", 0.8],
     ["news", 0.8],
     ["cases", 0.6],
     ["about", 0.7],

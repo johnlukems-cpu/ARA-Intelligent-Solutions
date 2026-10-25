@@ -39,7 +39,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
             ) : null}
             <ContactForm
               locale={locale}
-              topicGroups={getContactTopicGroups(locale, { products: t.nav.products })}
+              topicGroups={getContactTopicGroups(locale, { products: t.nav.products, packages: t.pricing.packagesGroup })}
               privacyHref={href(locale, "privacy")}
             />
           </div>

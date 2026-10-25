@@ -8,6 +8,7 @@ export const routeSegments = {
   home: { nl: "", en: "" },
   services: { nl: "diensten", en: "services" },
   products: { nl: "producten", en: "products" },
+  pricing: { nl: "prijzen", en: "pricing" },
   news: { nl: "nieuws", en: "news" },
   cases: { nl: "cases", en: "cases" },
   about: { nl: "over-ons", en: "about" },
