@@ -74,7 +74,8 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 
 | File | Use | Source |
 | --- | --- | --- |
-| `src/assets/images/ara-logo-dark.webp` | Header and footer logo, 404 page | The official ARA logo with the macaw (unchanged), on a transparent background for dark surfaces (`scripts/brand-assets/make_logo_dark.py`). |
+| `src/assets/images/ara-wordmark.webp` | Header and footer logo, 404 page | The ARA wordmark without the macaw (`scripts/brand-assets/make_wordmark.py`, derived from `ara-logo-dark.webp`; the first A is a copy of the last A because the macaw overlapped it). "INTELLIGENT SOLUTIONS" and the tagline are live text in `src/components/layout/logo.tsx`, so they stay readable at small sizes. |
+| `src/assets/images/ara-logo-dark.webp` | Source only | The original ARA logo with the macaw, on a transparent background (`scripts/brand-assets/make_logo_dark.py`). |
 | `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular ARA emblem (unchanged) |
 | `src/assets/images/robot-hero.webp` | Homepage hero, About page | ARA robot artwork (robot at a laptop) with its own background; the outer edges fade into the hero |
 | `src/assets/images/robot-office.webp` | Homepage about card, About page | The same robot artwork without edge fades (robot fully visible) |
@@ -82,7 +83,7 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 | `public/og/ara-og.jpg` | Social preview image | ARA promo artwork |
 | `src/assets/images/suriname-river.webp` | Call-to-action band | Original brand artwork |
 
-Apart from the logo and favicons, the macaw imagery has been replaced by the ARA robot. `scripts/brand-assets/make_robot_assets.py` regenerates the robot images from the three supplied artworks: `python3 scripts/brand-assets/make_robot_assets.py 9.webp 10.webp 11.webp .`
+Apart from the favicons, the macaw imagery has been replaced: the logo uses the wordmark without the macaw, illustrations use the ARA robot. `scripts/brand-assets/make_robot_assets.py` regenerates the robot images from the three supplied artworks: `python3 scripts/brand-assets/make_robot_assets.py 9.webp 10.webp 11.webp .`
 
 ## Editing content
 

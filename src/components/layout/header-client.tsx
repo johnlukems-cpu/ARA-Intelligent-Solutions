@@ -244,7 +244,7 @@ export function HeaderClient({ locale, items, services, cta, homeHref, alternate
 
   return (
     <header className="on-dark sticky top-0 z-50 border-b border-white/10 bg-midnight text-white">
-      <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 lg:h-[5.5rem]">
+      <div className="container-site flex h-20 items-center justify-between gap-4 lg:h-24">
         {logo}
 
         <nav aria-label={labels.mainNav} className="hidden xl:block">
@@ -302,7 +302,7 @@ export function HeaderClient({ locale, items, services, cta, homeHref, alternate
         id={panelId}
         ref={panelRef}
         hidden={!open}
-        className="fixed inset-x-0 top-[4.5rem] bottom-0 overflow-y-auto border-t border-white/10 bg-midnight lg:top-[5.5rem] xl:hidden"
+        className="fixed inset-x-0 top-20 bottom-0 overflow-y-auto border-t border-white/10 bg-midnight lg:top-24 xl:hidden"
       >
         <nav aria-label={labels.mainNav} className="container-site py-6">
           <ul className="flex flex-col gap-1">

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Compass } from "lucide-react";
 import "./globals.css";
-import logo from "@/assets/images/ara-logo-dark.webp";
+import { Logo } from "@/components/layout/logo";
 import { siteConfig } from "@/config/site";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href, type RouteKey } from "@/i18n/routes";
@@ -27,9 +26,7 @@ export default function GlobalNotFound() {
         <main className="on-dark bg-hero-glow relative flex min-h-screen flex-col overflow-hidden text-white">
           <div aria-hidden="true" className="bg-circuit absolute inset-0" />
           <div className="container-site relative flex flex-1 flex-col items-center justify-center py-16 text-center">
-            <Link href="/" className="inline-flex items-center gap-3 rounded-lg" aria-label={getDictionary("nl").a11y.home}>
-              <Image src={logo} alt="" priority sizes="240px" className="h-auto w-60 object-contain" />
-            </Link>
+            <Logo homeHref="/" label={getDictionary("nl").a11y.home} variant="footer" />
             <span className="mt-10 flex size-14 items-center justify-center rounded-full bg-white/10 ring-1 ring-cyan/40">
               <Compass aria-hidden="true" className="size-7 text-cyan" />
             </span>
