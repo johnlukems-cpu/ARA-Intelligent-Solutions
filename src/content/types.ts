@@ -42,27 +42,52 @@ export type SeoFields = {
 /* Services                                                            */
 /* ------------------------------------------------------------------ */
 
+/** One service group within a division, e.g. "AI Employees". */
 export type Service = {
   id: string;
   icon: IconName;
   name: Localized;
   description: Localized;
-  problem: Localized;
-  examples: Localized<string[]>;
+  /** What is offered within this service. */
+  offerings: Localized<string[]>;
+  /** Business use cases / example applications. */
+  useCases: Localized<string[]>;
+  benefits: Localized<string[]>;
+  /** Optional link to a dedicated page (e.g. AI-medewerkers). */
+  more?: { routeKey: "aiEmployees" | "pricing"; label: Localized };
 };
 
+/** The service divisions with their own page under /diensten. */
+export type ServiceCategoryId = "ai-solutions" | "digital-solutions" | "it-business-technology";
+
 export type ServiceCategory = {
-  id: "ai" | "automation" | "software" | "digital";
+  id: ServiceCategoryId;
   slug: Localized;
   icon: IconName;
   accent: Accent;
+  /** Brand name, e.g. "ARA AI Solutions". */
   name: Localized;
   shortName: Localized;
+  /** One-line positioning (hero subtitle). */
+  positioning: Localized;
+  /** Short description for cards. */
   summary: Localized;
   intro: Localized;
+  /** Three example services for cards and menus. */
+  highlights: Localized<string[]>;
   services: Service[];
+  applications: Localized<{ title: string; text: string }[]>;
+  benefits: Localized<{ title: string; text: string }[]>;
+  process: Localized<{ title: string; text: string }[]>;
+  /** Important note (human oversight, partner delivery, …). */
+  note?: { title: Localized; text: Localized };
+  faq: Localized<FaqItem[]>;
+  cta: Localized;
   seo: Localized<SeoFields>;
 };
+
+/** Division ids including the AI Academy (which has its own route). */
+export type DivisionId = ServiceCategoryId | "academy";
 
 /* ------------------------------------------------------------------ */
 /* Products                                                            */
@@ -181,7 +206,7 @@ export type Article = {
   isDemo: boolean;
   featured?: boolean;
   /** Related CTA target. */
-  ctaService?: ServiceCategory["id"];
+  ctaService?: ServiceCategoryId;
   /** Available translations. At least one locale must be present. */
   translations: Partial<Record<Locale, ArticleTranslation>>;
 };
@@ -199,7 +224,7 @@ export type CaseStudy = {
   type: CaseType;
   icon: IconName;
   accent: Accent;
-  category: ServiceCategory["id"];
+  category: ServiceCategoryId;
   title: Localized;
   summary: Localized;
   challenge: Localized;

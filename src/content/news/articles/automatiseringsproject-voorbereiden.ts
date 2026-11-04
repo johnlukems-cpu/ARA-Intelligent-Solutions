@@ -10,7 +10,7 @@ const article: Article = {
   icon: "kanban",
   accent: "blue",
   isDemo: true,
-  ctaService: "automation",
+  ctaService: "ai-solutions",
   translations: {
     nl: {
       title: "Checklist: zo bereidt u een automatiseringsproject voor",

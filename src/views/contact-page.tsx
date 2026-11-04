@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { isContactDeliveryConfigured } from "@/lib/contact-delivery";
+import { contactTopicLabels } from "@/lib/contact-topic-labels";
 import { getContactTopicGroups } from "@/lib/contact-topics";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Notice } from "@/components/ui/notice";
@@ -39,7 +40,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
             ) : null}
             <ContactForm
               locale={locale}
-              topicGroups={getContactTopicGroups(locale, { products: t.nav.products, packages: t.pricing.packagesGroup, aiPackages: t.pricing.aiPackagesGroup })}
+              topicGroups={getContactTopicGroups(locale, contactTopicLabels(locale))}
               privacyHref={href(locale, "privacy")}
             />
           </div>

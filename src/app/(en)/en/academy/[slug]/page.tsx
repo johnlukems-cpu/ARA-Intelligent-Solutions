@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const training = getTrainingBySlug("en", slug);
   if (!training) return {};
   const t = getDictionary("en");
-  const price = `${training.price.from ? `${t.pricing.from} ` : ""}${formatUsd(training.price.amount, "en")} USD`;
+  const price = training.price
+    ? `${training.price.from ? `${t.pricing.from} ` : ""}${formatUsd(training.price.amount, "en")} USD`
+    : t.academy.priceOnRequest;
   return buildMetadata({
     locale: "en",
     title: `${training.name["en"]} — ${t.academy.brand}`,

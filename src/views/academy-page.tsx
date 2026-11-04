@@ -1,4 +1,4 @@
-import { BadgeCheck, CircleCheck, ExternalLink, Info, Scale } from "lucide-react";
+import { BadgeCheck, CalendarDays, CircleCheck, ExternalLink, Info, Scale } from "lucide-react";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import {
   academyFaq,
@@ -9,12 +9,14 @@ import {
   formatIcons,
   trainingFormats,
   trainings,
+  upcomingSessions,
   type Training,
 } from "@/content/academy";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { isContactDeliveryConfigured } from "@/lib/contact-delivery";
+import { formatDate } from "@/lib/format";
 import { formatUsd } from "@/lib/price";
 import { AcademyHeroVisual } from "@/components/academy/academy-hero-visual";
 import { AcademyForm } from "@/components/forms/academy-form";
@@ -41,10 +43,11 @@ export function registerHref(locale: Locale, trainingId?: string, format?: strin
   return `${href(locale, "academy")}${query ? `?${query}` : ""}#${REGISTER_ANCHOR}`;
 }
 
-/** CTA label for a training card: company training gets its own wording. */
+/** CTA label for a training: company training and "price on request" get their own wording. */
 export function trainingCta(training: Training, locale: Locale): string {
   const a = getDictionary(locale).academy;
-  return training.id === COMPANY_TRAINING ? a.companyCta : a.register;
+  if (training.id === COMPANY_TRAINING) return a.companyCta;
+  return training.price ? a.register : a.requestInfo;
 }
 
 /** Schema.org Course for a training (used on the overview and detail pages). */
@@ -56,19 +59,25 @@ export function courseJsonLd(training: Training, locale: Locale) {
     url: absoluteUrl(href(locale, "academy", training.slug[locale])),
     inLanguage: locale,
     provider: { "@type": "Organization", name: siteConfig.name, url: absoluteUrl(href(locale, "home")) },
-    offers: {
-      "@type": "Offer",
-      category: "Paid",
-      priceCurrency: "USD",
-      price: training.price.amount,
-      ...(training.price.from ? { priceSpecification: { "@type": "PriceSpecification", minPrice: training.price.amount, priceCurrency: "USD" } } : {}),
-    },
+    ...(training.price
+      ? {
+          offers: {
+            "@type": "Offer",
+            category: "Paid",
+            priceCurrency: "USD",
+            price: training.price.amount,
+            ...(training.price.from
+              ? { priceSpecification: { "@type": "PriceSpecification", minPrice: training.price.amount, priceCurrency: "USD" } }
+              : {}),
+          },
+        }
+      : {}),
     hasCourseInstance: training.formats
       .filter((format) => format !== "in-company")
       .map((format) => ({
         "@type": "CourseInstance",
         courseMode: format === "online" ? "online" : "onsite",
-        courseWorkload: `PT${training.durationHours}H`,
+        ...(training.durationHours ? { courseWorkload: `PT${training.durationHours}H` } : {}),
         ...(format === "classroom" ? { location: { "@type": "Place", address: { "@type": "PostalAddress", addressCountry: "SR" } } } : {}),
       })),
   };
@@ -98,7 +107,8 @@ export function AcademyPage({ locale }: { locale: Locale }) {
                 {a.taglineEn}
               </p>
             ) : null}
-            <p className="mt-4">{a.intro}</p>
+            <p className="mt-4 font-semibold text-white">{a.positioning}</p>
+            <p className="mt-3">{a.intro}</p>
             <p className="mt-3">{a.intro2}</p>
           </>
         }
@@ -126,7 +136,7 @@ export function AcademyPage({ locale }: { locale: Locale }) {
       <section id={TRAININGS_ANCHOR} className="scroll-mt-28 bg-surface py-16 sm:py-20" aria-labelledby="trainings-title">
         <div className="container-site">
           <SectionHeading id="trainings-title" eyebrow={a.trainingsEyebrow} title={a.trainingsTitle} intro={a.trainingsIntro} />
-          <ul className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <ul className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {trainings.map((training) => (
               <li key={training.id} className={training.highlight ? "relative" : undefined}>
                 <PriceCard
@@ -138,10 +148,19 @@ export function AcademyPage({ locale }: { locale: Locale }) {
                     name: training.name[locale],
                     tag: training.highlight ? a.recommended : training.level[locale],
                     description: training.summary[locale],
-                    price: { amount: training.price.amount, from: training.price.from, period: training.price.unit },
+                    price: training.price
+                      ? { amount: training.price.amount, from: training.price.from, period: training.price.unit }
+                      : undefined,
+                    priceFallback: a.priceOnRequest,
                     duration: training.duration[locale],
-                    includedTitle: t.pricing.included,
-                    included: training.included[locale],
+                    meta: [
+                      { label: a.language, value: training.language[locale] },
+                      { label: a.audience, value: training.audience[locale].join(", ") },
+                    ],
+                    includedTitle: a.objectives,
+                    included: training.outcomes[locale],
+                    examplesTitle: t.pricing.included,
+                    examples: training.included[locale],
                     note: training.id === "claude-code-automation" || training.id === COMPANY_TRAINING ? training.note?.[locale] : undefined,
                     highlight: training.highlight,
                     ctaHref: registerHref(locale, training.id),
@@ -279,7 +298,9 @@ export function AcademyPage({ locale }: { locale: Locale }) {
               </li>
             ))}
           </ul>
-          <Notice className="mt-6">{a.certificateNote}</Notice>
+          <Notice className="mt-6">
+            <strong>{a.certificateTitle}.</strong> {a.certificateNote}
+          </Notice>
         </div>
       </section>
 
@@ -295,7 +316,7 @@ export function AcademyPage({ locale }: { locale: Locale }) {
                 </h2>
                 <p className="mt-4 leading-relaxed text-white/80">{a.customText}</p>
                 <p className="mt-3 leading-relaxed text-white/80">{a.customText2}</p>
-                {company ? (
+                {company?.price ? (
                   <p className="mt-5">
                     <span className="block text-sm font-semibold text-white/70">{t.pricing.from}</span>
                     <span className="font-display text-4xl font-extrabold text-white">{formatUsd(company.price.amount, locale)}</span>{" "}
@@ -318,6 +339,47 @@ export function AcademyPage({ locale }: { locale: Locale }) {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Upcoming sessions (only real, confirmed dates from academy.ts) */}
+      <section className="py-16 sm:py-20" aria-labelledby="sessions-title">
+        <div className="container-site">
+          <SectionHeading id="sessions-title" eyebrow={a.sessionsEyebrow} title={a.sessionsTitle} />
+          {upcomingSessions.length ? (
+            <ul className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {upcomingSessions.map((session) => {
+                const training = trainings.find((item) => item.id === session.trainingId);
+                if (!training) return null;
+                return (
+                  <li
+                    key={`${session.trainingId}-${session.date}-${session.format}`}
+                    className="rounded-[var(--radius-card)] bg-white p-6 shadow-[var(--shadow-card)] ring-1 ring-line"
+                  >
+                    <p className="flex items-center gap-2 text-sm font-semibold text-electric-600">
+                      <CalendarDays aria-hidden="true" className="size-4" />
+                      <time dateTime={session.date}>{formatDate(session.date, locale)}</time>
+                      {session.time ? <span className="text-muted">· {session.time}</span> : null}
+                    </p>
+                    <h3 className="mt-2 text-lg font-bold">{training.name[locale]}</h3>
+                    <p className="mt-1 text-sm text-muted">
+                      {a.formats[session.format].title}
+                      {session.location ? ` · ${session.location[locale]}` : ""}
+                      {typeof session.seats === "number" ? ` · ${a.sessionsSeats(session.seats)}` : ""}
+                    </p>
+                    <ButtonLink href={registerHref(locale, training.id, session.format)} variant="secondary" size="sm" className="mt-4" arrow>
+                      {trainingCta(training, locale)}
+                    </ButtonLink>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className="mt-6 flex max-w-3xl gap-3 rounded-2xl bg-surface p-5 leading-relaxed text-ink ring-1 ring-line">
+              <CalendarDays aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-electric-600" />
+              {a.sessionsEmpty}
+            </p>
+          )}
         </div>
       </section>
 
@@ -360,8 +422,9 @@ export function AcademyPage({ locale }: { locale: Locale }) {
                   <li key={training.id} className="flex items-center justify-between gap-3 py-2.5 text-sm">
                     <span className="font-semibold text-midnight">{training.name[locale]}</span>
                     <span className="shrink-0 text-right text-muted">
-                      {training.price.from ? `${t.pricing.from.toLowerCase()} ` : ""}
-                      {formatUsd(training.price.amount, locale)}
+                      {training.price
+                        ? `${training.price.from ? `${t.pricing.from.toLowerCase()} ` : ""}${formatUsd(training.price.amount, locale)}`
+                        : a.priceOnRequest}
                     </span>
                   </li>
                 ))}

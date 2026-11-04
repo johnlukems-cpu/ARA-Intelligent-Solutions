@@ -10,7 +10,7 @@ const article: Article = {
   accent: "cyan",
   isDemo: true,
   featured: true,
-  ctaService: "ai",
+  ctaService: "ai-solutions",
   translations: {
     nl: {
       title: "Waar begint u met AI? Een praktisch stappenplan",

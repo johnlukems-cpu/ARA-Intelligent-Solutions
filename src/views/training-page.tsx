@@ -43,10 +43,14 @@ function CheckList({ items }: { items: string[] }) {
 export function TrainingPage({ training, locale }: { training: Training; locale: Locale }) {
   const t = getDictionary(locale);
   const a = t.academy;
-  const isQuote = Boolean(training.price.from);
+  const price = training.price;
+  const isQuote = Boolean(price?.from);
   const cta = registerHref(locale, training.id);
   const ctaLabel = trainingCta(training, locale);
-  const unitLabel = training.price.unit === "per-person" ? a.perPerson : a.perGroup;
+  const unitLabel = price ? (price.unit === "per-person" ? a.perPerson : a.perGroup) : "";
+  const priceText = price
+    ? `${price.from ? `${t.pricing.from} ` : ""}${formatUsd(price.amount, locale)} ${t.pricing.currency} ${unitLabel}`
+    : a.priceOnRequest;
   const others = trainings.filter((other) => other.id !== training.id);
 
   return (
@@ -72,10 +76,8 @@ export function TrainingPage({ training, locale }: { training: Training; locale:
             <Clock aria-hidden="true" className="mr-1.5 size-3.5" />
             {training.duration[locale]}
           </Tag>
-          <Tag tone="dark">
-            {training.price.from ? `${t.pricing.from} ` : ""}
-            {formatUsd(training.price.amount, locale)} {t.pricing.currency} {unitLabel}
-          </Tag>
+          <Tag tone="dark">{priceText}</Tag>
+          <Tag tone="dark">{training.language[locale]}</Tag>
         </div>
         <ButtonLink href={cta} size="lg" className="mt-8" arrow>
           {ctaLabel}
@@ -111,7 +113,10 @@ export function TrainingPage({ training, locale }: { training: Training; locale:
               </ol>
             </Block>
             <div className="grid gap-8 md:grid-cols-2">
-              <Block id="audience" title={a.detailAudience}>
+              <Block id="included" title={t.pricing.included}>
+              <CheckList items={training.included[locale]} />
+            </Block>
+            <Block id="audience" title={a.detailAudience}>
                 <ul className="space-y-3">
                   {training.audience[locale].map((item) => (
                     <li key={item} className="flex gap-2.5">
@@ -142,16 +147,24 @@ export function TrainingPage({ training, locale }: { training: Training; locale:
             <div className="space-y-6 lg:sticky lg:top-28">
               <div className="rounded-[var(--radius-card)] bg-white p-6 shadow-[var(--shadow-card)] ring-1 ring-line">
                 <p className="text-sm font-semibold text-muted">{isQuote ? t.pricing.from : a.priceLabel}</p>
-                <p className="mt-1">
-                  <span className="font-display text-4xl font-extrabold text-midnight">{formatUsd(training.price.amount, locale)}</span>{" "}
-                  <span className="text-sm font-semibold text-muted">
-                    {t.pricing.currency} {unitLabel}
-                  </span>
-                </p>
+                {price ? (
+                  <p className="mt-1">
+                    <span className="font-display text-4xl font-extrabold text-midnight">{formatUsd(price.amount, locale)}</span>{" "}
+                    <span className="text-sm font-semibold text-muted">
+                      {t.pricing.currency} {unitLabel}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="mt-1 font-display text-2xl font-extrabold text-midnight">{a.priceOnRequest}</p>
+                )}
                 <dl className="mt-5 space-y-3 border-t border-line pt-5 text-sm">
                   <div className="flex justify-between gap-4">
                     <dt className="font-semibold text-muted">{a.duration}</dt>
                     <dd className="text-right font-semibold text-midnight">{training.duration[locale]}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="font-semibold text-muted">{a.language}</dt>
+                    <dd className="text-right font-semibold text-midnight">{training.language[locale]}</dd>
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="font-semibold text-muted">{a.level}</dt>
@@ -181,7 +194,7 @@ export function TrainingPage({ training, locale }: { training: Training; locale:
       <section className="py-16 sm:py-20" aria-labelledby="other-trainings">
         <div className="container-site">
           <SectionHeading id="other-trainings" title={a.detailOthers} />
-          <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {others.map((other) => (
               <li key={other.id}>
                 <PriceCard
@@ -192,7 +205,8 @@ export function TrainingPage({ training, locale }: { training: Training; locale:
                     name: other.name[locale],
                     tag: other.level[locale],
                     description: other.summary[locale],
-                    price: { amount: other.price.amount, from: other.price.from, period: other.price.unit },
+                    price: other.price ? { amount: other.price.amount, from: other.price.from, period: other.price.unit } : undefined,
+                    priceFallback: a.priceOnRequest,
                     duration: other.duration[locale],
                     includedTitle: a.topics,
                     included: other.topics[locale].slice(0, 3),

@@ -19,6 +19,23 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     qualities: [75, 85],
   },
+  /** Old URLs from before the four-division structure (keep links and search results working). */
+  async redirects() {
+    const moved: [string, string][] = [
+      ["/diensten/ai-oplossingen", "/diensten/ai-solutions"],
+      ["/diensten/bedrijfsautomatisering", "/diensten/ai-solutions"],
+      ["/diensten/softwareontwikkeling", "/diensten/digital-solutions"],
+      ["/diensten/web-en-digitaal", "/diensten/digital-solutions"],
+      ["/en/services/business-automation", "/en/services/ai-solutions"],
+      ["/en/services/software-development", "/en/services/digital-solutions"],
+      ["/en/services/web-and-digital", "/en/services/digital-solutions"],
+      ["/ai-academy", "/academy"],
+      ["/ai-academy/:slug", "/academy/:slug"],
+      ["/en/ai-academy", "/en/academy"],
+      ["/en/ai-academy/:slug", "/en/academy/:slug"],
+    ];
+    return moved.map(([source, destination]) => ({ source, destination, permanent: true }));
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

@@ -44,7 +44,18 @@ type Status =
 const inputClass =
   "mt-2 block w-full rounded-xl border bg-white px-4 py-3 text-ink shadow-sm transition-colors placeholder:text-muted/70 focus:outline-none focus-visible:ring-4";
 
-export function ContactForm({ locale, topicGroups, privacyHref }: { locale: Locale; topicGroups: TopicGroup[]; privacyHref: string }) {
+export function ContactForm({
+  locale,
+  topicGroups,
+  privacyHref,
+  defaultTopic,
+}: {
+  locale: Locale;
+  topicGroups: TopicGroup[];
+  privacyHref: string;
+  /** Topic selected when the URL does not request one (e.g. on a division page). */
+  defaultTopic?: string;
+}) {
   const t = getDictionary(locale);
   const c = t.contact;
   const [values, setValues] = useState<FormState>(emptyState);
@@ -74,7 +85,7 @@ export function ContactForm({ locale, topicGroups, privacyHref }: { locale: Loca
     // allowedTopics is derived from props that do not change during the form's lifetime.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
-  const current: FormState = { ...values, topic: values.topic || requestedTopic };
+  const current: FormState = { ...values, topic: values.topic || requestedTopic || defaultTopic || "" };
 
   const errorMessage = (error?: ContactErrorCode): string | undefined => {
     if (!error) return undefined;

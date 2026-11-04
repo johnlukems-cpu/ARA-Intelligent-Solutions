@@ -60,7 +60,8 @@ type Status =
 export type TrainingOption = {
   id: string;
   label: string;
-  price: { amount: number; from?: boolean; unit: "per-person" | "per-group" };
+  /** null = price on request. */
+  price: { amount: number; from?: boolean; unit: "per-person" | "per-group" } | null;
 };
 
 type Props = { locale: Locale; trainings: TrainingOption[]; privacyHref: string };
@@ -330,12 +331,17 @@ function AcademyFormInner({ locale, trainings, privacyHref, preset }: Props & { 
           <p className="text-sm">
             <span className="font-semibold text-midnight">{selected.label}</span>
             <span className="block text-muted">
-              {selected.price.from ? `${t.pricing.from} ` : ""}
-              {formatUsd(selected.price.amount, locale)} USD {selected.price.unit === "per-person" ? t.academy.perPerson : t.academy.perGroup}
+              {selected.price
+                ? `${selected.price.from ? `${t.pricing.from} ` : ""}${formatUsd(selected.price.amount, locale)} USD ${
+                    selected.price.unit === "per-person" ? t.academy.perPerson : t.academy.perGroup
+                  }`
+                : t.academy.priceOnRequest}
             </span>
           </p>
           <p className="mt-2 text-sm sm:mt-0 sm:text-right">
-            {selected.price.unit === "per-person" && participantCount > 0 ? (
+            {!selected.price ? (
+              <span className="font-semibold text-midnight">{f.onRequestNote}</span>
+            ) : selected.price.unit === "per-person" && participantCount > 0 ? (
               <>
                 <span className="block text-muted">
                   {f.estimate} ({participantCount} × {formatUsd(selected.price.amount, locale)})

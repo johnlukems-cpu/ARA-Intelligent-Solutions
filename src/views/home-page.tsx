@@ -5,7 +5,7 @@ import robotOffice from "@/assets/images/robot-office.webp";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import { getLatestArticles } from "@/content/news";
 import { getFeaturedProducts, hasSampleProducts, hasUnreleasedProducts } from "@/content/products";
-import { serviceCategories } from "@/content/services";
+import { divisions } from "@/content/services";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
@@ -13,7 +13,7 @@ import { toArticleSummaries } from "@/lib/articles";
 import { AiEmployeesTeaser } from "@/components/ai/ai-employees-teaser";
 import { ArticleCard } from "@/components/cards/article-card";
 import { ProductCard } from "@/components/cards/product-card";
-import { ServiceCategoryCard } from "@/components/cards/service-card";
+import { DivisionCard } from "@/components/cards/service-card";
 import { ButtonLink } from "@/components/ui/button";
 import { CtaBand } from "@/components/ui/cta-band";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -118,11 +118,13 @@ export function HomePage({ locale }: { locale: Locale }) {
             <SectionHeading id="services-title" eyebrow={t.home.servicesEyebrow} title={t.home.servicesTitle} />
             <p className="max-w-md text-muted lg:text-right">{t.home.servicesIntro}</p>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {serviceCategories.map((category) => (
-              <ServiceCategoryCard key={category.id} category={category} locale={locale} />
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {divisions.map((division) => (
+              <li key={division.id}>
+                <DivisionCard division={division} locale={locale} />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -135,13 +137,11 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       {/* Approach */}
       <section className="on-dark bg-navy text-white" aria-labelledby="approach-title">
-        <div className="container-site py-14">
-          <h2 id="approach-title" className="sr-only">
-            {t.home.approachTitle}
-          </h2>
-          <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/10">
+        <div className="container-site py-16 sm:py-20">
+          <SectionHeading id="approach-title" eyebrow={t.home.approachEyebrow} title={t.home.approachTitle} tone="dark" />
+          <ol className="mt-10 grid gap-8 md:grid-cols-3 md:divide-x md:divide-white/10">
             {t.home.approach.map((step, index) => (
-              <li key={step.title} className="flex gap-4 lg:px-6 lg:first:pl-0">
+              <li key={step.title} className="flex gap-4 md:px-6 md:first:pl-0">
                 <span className="font-display text-4xl leading-none font-extrabold text-cyan" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}
                 </span>

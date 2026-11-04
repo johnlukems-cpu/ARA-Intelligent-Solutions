@@ -9,7 +9,7 @@ const article: Article = {
   icon: "workflow",
   accent: "blue",
   isDemo: true,
-  ctaService: "automation",
+  ctaService: "ai-solutions",
   translations: {
     nl: {
       title: "Vijf processen die bijna elke organisatie kan automatiseren",

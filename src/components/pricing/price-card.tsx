@@ -18,7 +18,11 @@ export type PriceCardData = {
   description: string;
   /** Short line about who it is for. */
   audience?: string;
-  price: { amount: number; from?: boolean; period: PricePeriod };
+  /** Omit to show `priceFallback` instead (e.g. "Price on request"). */
+  price?: { amount: number; from?: boolean; period: PricePeriod };
+  priceFallback?: string;
+  /** Extra label/value rows under the price (language, audience, …). */
+  meta?: { label: string; value: string }[];
   /** Optional duration line shown under the price (e.g. trainings). */
   duration?: string;
   included: string[];
@@ -40,7 +44,7 @@ export type PriceCardData = {
 export function PriceCard({ data, locale, headingLevel = "h3" }: { data: PriceCardData; locale: Locale; headingLevel?: "h2" | "h3" }) {
   const t = getDictionary(locale).pricing;
   const Heading = headingLevel;
-  const periodLabel = t.period[data.price.period];
+  const periodLabel = data.price ? t.period[data.price.period] : "";
   return (
     <article
       aria-labelledby={`pkg-${data.id}`}
@@ -64,11 +68,17 @@ export function PriceCard({ data, locale, headingLevel = "h3" }: { data: PriceCa
       {data.audience ? <p className="mt-2 text-sm font-medium text-electric-600">{data.audience}</p> : null}
 
       <p className="mt-5 border-y border-line py-4">
-        {data.price.from ? <span className="block text-sm font-semibold text-muted">{t.from}</span> : null}
-        <span className="font-display text-4xl font-extrabold text-midnight">{formatUsd(data.price.amount, locale)}</span>{" "}
-        <span className="text-sm font-semibold text-muted">
-          {t.currency} {periodLabel}
-        </span>
+        {data.price ? (
+          <>
+            {data.price.from ? <span className="block text-sm font-semibold text-muted">{t.from}</span> : null}
+            <span className="font-display text-4xl font-extrabold text-midnight">{formatUsd(data.price.amount, locale)}</span>{" "}
+            <span className="text-sm font-semibold text-muted">
+              {t.currency} {periodLabel}
+            </span>
+          </>
+        ) : (
+          <span className="block font-display text-2xl font-extrabold text-midnight">{data.priceFallback}</span>
+        )}
         {data.duration ? (
           <span className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-navy">
             <Clock aria-hidden="true" className="size-4 text-electric-600" />
@@ -76,6 +86,16 @@ export function PriceCard({ data, locale, headingLevel = "h3" }: { data: PriceCa
           </span>
         ) : null}
       </p>
+      {data.meta?.length ? (
+        <dl className="mt-4 space-y-1.5 text-sm">
+          {data.meta.map((row) => (
+            <div key={row.label} className="flex gap-2">
+              <dt className="shrink-0 font-semibold text-midnight">{row.label}:</dt>
+              <dd className="text-muted">{row.value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
 
       <div className="mt-5">
         <p className="text-sm font-bold text-midnight">{data.includedTitle ?? t.included}</p>

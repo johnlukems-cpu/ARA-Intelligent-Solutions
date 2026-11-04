@@ -9,7 +9,7 @@ const article: Article = {
   icon: "code",
   accent: "navy",
   isDemo: true,
-  ctaService: "software",
+  ctaService: "digital-solutions",
   translations: {
     nl: {
       title: "Maatwerk of standaardsoftware? Zo maakt u de juiste keuze",

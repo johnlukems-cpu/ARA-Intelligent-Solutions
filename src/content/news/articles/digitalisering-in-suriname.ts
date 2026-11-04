@@ -9,7 +9,7 @@ const article: Article = {
   icon: "globe",
   accent: "yellow",
   isDemo: true,
-  ctaService: "digital",
+  ctaService: "digital-solutions",
   translations: {
     nl: {
       title: "Digitalisering in Suriname: praktische aandachtspunten",

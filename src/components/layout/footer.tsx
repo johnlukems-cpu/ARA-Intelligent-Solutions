@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { serviceCategories } from "@/content/services";
+import { divisions } from "@/content/services";
+import { divisionHref } from "@/lib/divisions";
 import { products } from "@/content/products";
 import { getLatestArticles, resolveArticle } from "@/content/news";
 import type { Locale } from "@/i18n/config";
@@ -93,20 +94,20 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <nav aria-label={t.a11y.footerNav} className="grid grid-cols-1 gap-8 min-[400px]:grid-cols-2 xl:grid-cols-4 lg:col-span-8">
           <FooterColumn title={t.footer.servicesTitle}>
-            {serviceCategories.map((category) => (
-              <FooterLink key={category.id} href={href(locale, "services", category.slug[locale])}>
-                {category.name[locale]}
+            {divisions.map((division) => (
+              <FooterLink key={division.id} href={divisionHref(locale, division)}>
+                {division.name[locale]}
               </FooterLink>
             ))}
+            <FooterLink href={href(locale, "aiEmployees")}>{t.nav.aiEmployees}</FooterLink>
+            <FooterLink href={href(locale, "pricing")}>{t.nav.pricing}</FooterLink>
           </FooterColumn>
           <FooterColumn title={t.footer.companyTitle}>
             <FooterLink href={href(locale, "home")}>{t.nav.home}</FooterLink>
-            <FooterLink href={href(locale, "services")}>{t.nav.services}</FooterLink>
-            <FooterLink href={href(locale, "aiEmployees")}>{t.nav.aiEmployees}</FooterLink>
-            <FooterLink href={href(locale, "academy")}>{t.nav.academy}</FooterLink>
-            <FooterLink href={href(locale, "pricing")}>{t.nav.pricing}</FooterLink>
-            <FooterLink href={href(locale, "cases")}>{t.nav.cases}</FooterLink>
+            <FooterLink href={href(locale, "services")}>{t.nav.allServices}</FooterLink>
             <FooterLink href={href(locale, "about")}>{t.nav.about}</FooterLink>
+            <FooterLink href={href(locale, "cases")}>{t.nav.cases}</FooterLink>
+            <FooterLink href={href(locale, "news")}>{t.nav.news}</FooterLink>
             <FooterLink href={href(locale, "contact")}>{t.nav.contact}</FooterLink>
           </FooterColumn>
           <FooterColumn title={t.footer.productsTitle}>

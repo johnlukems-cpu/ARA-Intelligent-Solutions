@@ -10,7 +10,7 @@ export const routeSegments = {
   products: { nl: "producten", en: "products" },
   pricing: { nl: "prijzen", en: "pricing" },
   aiEmployees: { nl: "ai-medewerkers", en: "ai-assistants" },
-  academy: { nl: "ai-academy", en: "ai-academy" },
+  academy: { nl: "academy", en: "academy" },
   news: { nl: "nieuws", en: "news" },
   cases: { nl: "cases", en: "cases" },
   about: { nl: "over-ons", en: "about" },

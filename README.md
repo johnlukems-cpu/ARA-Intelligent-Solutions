@@ -35,15 +35,17 @@ Requires Node.js 20.9 or newer (Next.js 16 requirement).
 | --- | --- |
 | `/` | `/en` |
 | `/ai-medewerkers` | `/en/ai-assistants` |
-| `/ai-academy`, `/ai-academy/[slug]` | `/en/ai-academy`, `/en/ai-academy/[slug]` |
+| `/academy`, `/academy/[slug]` | `/en/academy`, `/en/academy/[slug]` |
 | `/prijzen` | `/en/pricing` |
-| `/diensten`, `/diensten/[slug]` | `/en/services`, `/en/services/[slug]` |
+| `/diensten`, `/diensten/ai-solutions`, `/diensten/digital-solutions`, `/diensten/it-business-technology` | `/en/services`, `/en/services/ai-solutions`, `/en/services/digital-solutions`, `/en/services/it-business-technology` |
 | `/producten`, `/producten/[slug]` | `/en/products`, `/en/products/[slug]` |
 | `/nieuws`, `/nieuws/[slug]` | `/en/news`, `/en/news/[slug]` |
 | `/cases`, `/cases/[slug]` | `/en/cases`, `/en/cases/[slug]` |
 | `/over-ons` | `/en/about` |
 | `/contact` | `/en/contact` |
 | `/privacy`, `/voorwaarden`, `/cookies` | `/en/privacy`, `/en/terms`, `/en/cookies` |
+
+Old URLs (`/diensten/ai-oplossingen`, `/diensten/bedrijfsautomatisering`, `/diensten/softwareontwikkeling`, `/diensten/web-en-digitaal`, their English equivalents and `/ai-academy/...`) permanently redirect to the new routes (`next.config.ts`).
 
 Also: `/sitemap.xml`, `/robots.txt`, `POST /api/contact`, `POST /api/academy`. Unknown URLs get a bilingual 404 page (`src/app/global-not-found.tsx`).
 
@@ -86,7 +88,7 @@ Apart from the logo and favicons, the macaw imagery has been replaced by the ARA
 
 All content lives in `src/content/`. Pages, cards, the footer, the sitemap and search pick up changes automatically.
 
-- **Services**: `services.ts`. Four categories with eleven services, each with a description, the problem it solves and examples, in both languages.
+- **Divisions and services**: `services.ts`. ARA works as four divisions under one brand: ARA AI Solutions, ARA Digital Solutions, ARA AI Academy and ARA IT & Business Technology. The three service divisions each have four services (offerings, examples, benefits) plus applications, benefits, working process, FAQ, CTA and SEO texts. `divisions` defines the order used by the header dropdown, footer, homepage and services page (the Academy entry links to `/academy`). The AI division note states human oversight; the IT note explains which services ARA delivers directly and which through partners.
 - **Products**: `products.ts`. The catalogue contains ARA Payroll, ARA Accounting, ARA Tax, ARA HR and BouwFlow, all with status `coming-soon`. Their descriptions, features and FAQs are draft texts; check them before launch. Rules (also documented in the file):
   - `status`: `available`, `beta`, `in-development` or `coming-soon`. Only use `available`/`beta` for products that really exist. While any product is unreleased, the catalogue shows a "coming soon, details may change" notice.
   - `brand`: `{ kind: "ara-app", tone, icon, label }` shows the ARA app style (coloured app icon + "ARA" + name as live text). `{ kind: "logo", src, width, height }` shows a product's own logo (BouwFlow). Icons and logos live in `public/images/products/`. Without `brand`, generated artwork is used.
@@ -95,7 +97,7 @@ All content lives in `src/content/`. Pages, cards, the footer, the sitemap and s
   - `isSample: true` marks illustrative placeholder entries with a "Concept" label (none at the moment).
 - **Pricing**: `pricing.ts`. Seven packages (USD), the extra Google Workspace users card, general terms and the pricing FAQ. Quote buttons open the contact form with `?topic=package:<id>` pre-selected.
 - **ARA AI Medewerkers**: `ai-employees.ts`. The three AI packages (introductory prices), the five specialisations, the five-step "how it works", separate costs, safety principles and terms. The page lives at `/ai-medewerkers`; a teaser block appears on the homepage, services, the AI service area and the pricing page.
-- **ARA AI Academy**: `academy.ts`. The four trainings (prices in USD, duration, included items, programme, audience, outcomes), training formats, what participants receive, the Claude topics, official Anthropic links, pricing terms and the FAQ. Each training has its own page at `/ai-academy/<slug>`. The registration form posts to `/api/academy` and uses the same delivery integration as the contact form (Resend or webhook; the webhook payload has `type: "academy_registration"`). "Register" buttons pre-select the training via `?training=<id>`; the form shows the price and an estimated total. Submitting is a request, not a confirmed registration.
+- **ARA AI Academy**: `academy.ts`. Prices for all courses are set in one place, `coursePrices` at the top of the file (USD; `null` means "price on request", which changes the card, the detail page and the form to "Request information"). Upcoming sessions go in `upcomingSessions` (empty = an honest "no dates scheduled" message; only add confirmed dates). The six trainings (duration, language, duration, included items, programme, audience, outcomes), training formats, what participants receive, the Claude topics, official Anthropic links, pricing terms and the FAQ. Each training has its own page at `/academy/<slug>`. The registration form posts to `/api/academy` and uses the same delivery integration as the contact form (Resend or webhook; the webhook payload has `type: "academy_registration"`). "Register" buttons pre-select the training via `?training=<id>`; the form shows the price and an estimated total. Submitting is a request, not a confirmed registration.
   - ARA is not presented as an Anthropic partner, no Anthropic or Claude logos are used, and the certificate is described as an ARA certificate of participation. Keep it that way unless a partnership is officially confirmed.
 - **News**: create a file in `content/news/articles/`, then add it to the list in `content/news/index.ts`. Provide `translations.nl` and/or `translations.en`. The body uses structured blocks (`paragraph`, `heading`, `subheading`, `list`, `quote`, `callout`), so no HTML is needed and nothing unsafe gets rendered. Reading time is calculated automatically.
   - **Missing translations**: an article without English is still listed in the English section with an "Only available in Dutch" label. Its page shows the original text with a notice, is `noindex` and points its canonical URL at the original. The language switch on such a page goes to the news overview.

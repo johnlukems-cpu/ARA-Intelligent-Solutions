@@ -4,10 +4,25 @@ import type { FaqItem, IconName } from "./types";
 /**
  * ARA AI ACADEMY
  *
- * Trainings, formats and supporting content for /ai-academy (nl + en).
+ * Trainings, formats and supporting content for /academy (nl + en).
  * Prices are in USD. ARA AI Academy is not an official Anthropic or OpenAI
  * training programme; keep the disclaimers in place.
  */
+
+/**
+ * COURSE PRICES (USD) — edit prices here only.
+ * `null` means "price on request" (no price is shown; visitors request information).
+ */
+export const coursePrices = {
+  "ai-beginners": { amount: 35, unit: "per-person" },
+  "claude-entrepreneurs": { amount: 75, unit: "per-person" },
+  "chatgpt-business": null,
+  "claude-code-automation": { amount: 125, unit: "per-person" },
+  "ai-students-professionals": null,
+  "ai-teams": { amount: 350, from: true, unit: "per-group" },
+} as const satisfies Record<string, TrainingPrice | null>;
+
+export type TrainingPrice = { amount: number; from?: boolean; unit: "per-person" | "per-group" };
 
 export type TrainingFormat = "classroom" | "online" | "in-company";
 export const trainingFormats: TrainingFormat[] = ["classroom", "online", "in-company"];
@@ -20,10 +35,12 @@ export type Training = {
   name: Localized;
   summary: Localized;
   description: Localized<string[]>;
-  price: { amount: number; from?: boolean; unit: "per-person" | "per-group" };
+  /** From `coursePrices`; null = price on request. */
+  price: TrainingPrice | null;
   duration: Localized;
-  /** Hours, for structured data (ISO 8601 duration is derived from it). */
+  /** Hours, for structured data (ISO 8601 duration is derived from it); 0 = not fixed yet. */
   durationHours: number;
+  language: Localized;
   /** Programme topics (detail page). */
   topics: Localized<string[]>;
   /** Everything included, as shown on the price card. */
@@ -57,7 +74,8 @@ export const trainings: Training[] = [
         "We work with recognisable examples and exercises. You go home with prompts you can use immediately and clear guidelines for using AI safely and responsibly.",
       ],
     },
-    price: { amount: 35, unit: "per-person" },
+    price: coursePrices["ai-beginners"],
+    language: { nl: "Nederlands (Engels op aanvraag)", en: "Dutch (English on request)" },
     duration: { nl: "2 uur", en: "2 hours" },
     durationHours: 2,
     topics: {
@@ -136,7 +154,8 @@ export const trainings: Training[] = [
         "We also show how Claude Cowork can carry out tasks with your files and applications, and how to set up practical workflows that save you time every week.",
       ],
     },
-    price: { amount: 75, unit: "per-person" },
+    price: coursePrices["claude-entrepreneurs"],
+    language: { nl: "Nederlands (Engels op aanvraag)", en: "Dutch (English on request)" },
     duration: { nl: "4 uur", en: "4 hours" },
     durationHours: 4,
     topics: {
@@ -205,6 +224,88 @@ export const trainings: Training[] = [
     highlight: true,
   },
   {
+    id: "chatgpt-business",
+    slug: { nl: "chatgpt-voor-bedrijven", en: "chatgpt-for-business" },
+    icon: "bot",
+    level: { nl: "Beginner", en: "Beginner" },
+    name: { nl: "ChatGPT voor bedrijven", en: "ChatGPT for Business" },
+    summary: {
+      nl: "Leer ChatGPT gericht inzetten voor communicatie, analyses en dagelijkse bedrijfstaken.",
+      en: "Learn to use ChatGPT effectively for communication, analysis and everyday business tasks.",
+    },
+    description: {
+      nl: [
+        "In deze training leer je hoe je ChatGPT van OpenAI inzet in je onderneming: van het opstellen van e-mails en teksten tot het analyseren van informatie en het voorbereiden van rapportages.",
+        "We werken met praktijkvoorbeelden en bespreken hoe je ChatGPT veilig gebruikt, welke informatie je wel en niet deelt en hoe je de resultaten controleert.",
+      ],
+      en: [
+        "In this training you learn how to use OpenAI's ChatGPT in your business: from drafting emails and texts to analysing information and preparing reports.",
+        "We work with practical examples and discuss how to use ChatGPT safely, which information you should and should not share, and how to check the results.",
+      ],
+    },
+    price: coursePrices["chatgpt-business"],
+    language: { nl: "Nederlands (Engels op aanvraag)", en: "Dutch (English on request)" },
+    duration: { nl: "In overleg", en: "To be agreed" },
+    durationHours: 0,
+    topics: {
+      nl: [
+        "ChatGPT gebruiken voor zakelijke werkzaamheden",
+        "E-mails, teksten en rapportages opstellen",
+        "Informatie samenvatten en analyseren",
+        "Effectieve prompts voor bedrijfstaken",
+        "Veilig en verantwoord gebruik",
+      ],
+      en: [
+        "Using ChatGPT for business tasks",
+        "Drafting emails, texts and reports",
+        "Summarising and analysing information",
+        "Effective prompts for business tasks",
+        "Safe and responsible use",
+      ],
+    },
+    included: {
+      nl: [
+        "ChatGPT gebruiken voor zakelijke werkzaamheden",
+        "E-mails, teksten en rapportages opstellen",
+        "Informatie samenvatten en analyseren",
+        "Effectieve prompts voor bedrijfstaken",
+        "Veilig en verantwoord gebruik",
+        "Trainingsmateriaal",
+        "ARA AI Academy-certificaat van deelname",
+      ],
+      en: [
+        "Using ChatGPT for business tasks",
+        "Drafting emails, texts and reports",
+        "Summarising and analysing information",
+        "Effective prompts for business tasks",
+        "Safe and responsible use",
+        "Training materials",
+        "ARA AI Academy certificate of participation",
+      ],
+    },
+    audience: {
+      nl: ["Ondernemers en zzp'ers", "Office- en administratief medewerkers", "Marketing- en salesmedewerkers"],
+      en: ["Business owners and freelancers", "Office and administrative staff", "Marketing and sales staff"],
+    },
+    outcomes: {
+      nl: [
+        "Je zet ChatGPT doelgericht in voor je dagelijkse werk",
+        "Je schrijft prompts die bruikbare resultaten opleveren",
+        "Je weet hoe je resultaten controleert en gegevens beschermt",
+      ],
+      en: [
+        "You use ChatGPT purposefully in your daily work",
+        "You write prompts that produce usable results",
+        "You know how to check results and protect data",
+      ],
+    },
+    note: {
+      nl: "Prijs en duur worden binnenkort bekendgemaakt. Vraag informatie aan via het inschrijfformulier.",
+      en: "Price and duration will be announced soon. Request information through the registration form.",
+    },
+    formats: ["classroom", "online", "in-company"],
+  },
+  {
     id: "claude-code-automation",
     slug: { nl: "claude-code-en-ai-automation", en: "claude-code-and-ai-automation" },
     icon: "code",
@@ -224,7 +325,8 @@ export const trainings: Training[] = [
         "You work on a practical project assignment throughout the day and finish with a working result.",
       ],
     },
-    price: { amount: 125, unit: "per-person" },
+    price: coursePrices["claude-code-automation"],
+    language: { nl: "Nederlands (Engels op aanvraag)", en: "Dutch (English on request)" },
     duration: { nl: "1 trainingsdag", en: "1 training day" },
     durationHours: 7,
     topics: {
@@ -294,6 +396,88 @@ export const trainings: Training[] = [
     formats: ["classroom", "online", "in-company"],
   },
   {
+    id: "ai-students-professionals",
+    slug: { nl: "ai-voor-studenten-en-professionals", en: "ai-for-students-and-professionals" },
+    icon: "user-check",
+    level: { nl: "Beginner tot gevorderd", en: "Beginner to advanced" },
+    name: { nl: "AI voor studenten en professionals", en: "AI for Students and Professionals" },
+    summary: {
+      nl: "Gebruik AI slim en verantwoord voor studie, onderzoek, loopbaan en dagelijks werk.",
+      en: "Use AI smartly and responsibly for study, research, career and everyday work.",
+    },
+    description: {
+      nl: [
+        "Deze training helpt studenten en professionals om AI-tools zoals Claude en ChatGPT effectief te gebruiken bij leren, onderzoek, schrijven en plannen.",
+        "We besteden aandacht aan kritisch denken, bronvermelding en de regels die onderwijsinstellingen en werkgevers stellen aan AI-gebruik.",
+      ],
+      en: [
+        "This training helps students and professionals use AI tools such as Claude and ChatGPT effectively for learning, research, writing and planning.",
+        "We pay attention to critical thinking, citing sources and the rules that educational institutions and employers set for AI use.",
+      ],
+    },
+    price: coursePrices["ai-students-professionals"],
+    language: { nl: "Nederlands (Engels op aanvraag)", en: "Dutch (English on request)" },
+    duration: { nl: "In overleg", en: "To be agreed" },
+    durationHours: 0,
+    topics: {
+      nl: [
+        "AI gebruiken voor studie en onderzoek",
+        "Schrijven, samenvatten en plannen met AI",
+        "Kritisch omgaan met AI-resultaten",
+        "Bronvermelding en regels voor AI-gebruik",
+        "AI-vaardigheden voor je loopbaan",
+      ],
+      en: [
+        "Using AI for study and research",
+        "Writing, summarising and planning with AI",
+        "Critically assessing AI results",
+        "Citing sources and rules for AI use",
+        "AI skills for your career",
+      ],
+    },
+    included: {
+      nl: [
+        "AI gebruiken voor studie en onderzoek",
+        "Schrijven, samenvatten en plannen met AI",
+        "Kritisch omgaan met AI-resultaten",
+        "Bronvermelding en regels voor AI-gebruik",
+        "AI-vaardigheden voor je loopbaan",
+        "Trainingsmateriaal",
+        "ARA AI Academy-certificaat van deelname",
+      ],
+      en: [
+        "Using AI for study and research",
+        "Writing, summarising and planning with AI",
+        "Critically assessing AI results",
+        "Citing sources and rules for AI use",
+        "AI skills for your career",
+        "Training materials",
+        "ARA AI Academy certificate of participation",
+      ],
+    },
+    audience: {
+      nl: ["Studenten in hoger en middelbaar onderwijs", "Starters op de arbeidsmarkt", "Professionals die zich willen ontwikkelen"],
+      en: ["Students in higher and secondary education", "Graduates entering the job market", "Professionals who want to develop"],
+    },
+    outcomes: {
+      nl: [
+        "Je gebruikt AI als hulpmiddel zonder je eigen denkwerk uit te besteden",
+        "Je werkt sneller aan opdrachten en projecten",
+        "Je kent de regels en risico's van AI-gebruik",
+      ],
+      en: [
+        "You use AI as a tool without outsourcing your own thinking",
+        "You work faster on assignments and projects",
+        "You know the rules and risks of AI use",
+      ],
+    },
+    note: {
+      nl: "Prijs en duur worden binnenkort bekendgemaakt; groepstarieven voor scholen en organisaties zijn mogelijk. Vraag informatie aan via het inschrijfformulier.",
+      en: "Price and duration will be announced soon; group rates for schools and organisations are possible. Request information through the registration form.",
+    },
+    formats: ["classroom", "online", "in-company"],
+  },
+  {
     id: "ai-teams",
     slug: { nl: "ai-voor-bedrijven-en-teams", en: "ai-for-businesses-and-teams" },
     icon: "network",
@@ -313,7 +497,8 @@ export const trainings: Training[] = [
         "We pay explicit attention to AI policy, privacy and human oversight, so your team uses AI safely and with confidence.",
       ],
     },
-    price: { amount: 350, from: true, unit: "per-group" },
+    price: coursePrices["ai-teams"],
+    language: { nl: "Nederlands (Engels op aanvraag)", en: "Dutch (English on request)" },
     duration: { nl: "Halve of hele trainingsdag", en: "Half or full training day" },
     durationHours: 4,
     topics: {
@@ -379,6 +564,23 @@ export const trainings: Training[] = [
     formats: ["in-company", "online"],
   },
 ];
+
+/**
+ * UPCOMING SESSIONS — add confirmed dates here. Only list sessions that are
+ * actually scheduled; the page shows an honest empty state when this is empty.
+ */
+export type TrainingSession = {
+  trainingId: string;
+  /** ISO date, e.g. "2026-12-05". */
+  date: string;
+  /** Optional start and end time, e.g. "09:00–13:00". */
+  time?: string;
+  format: Exclude<TrainingFormat, "in-company">;
+  location?: Localized;
+  /** Optional remaining seats. */
+  seats?: number;
+};
+export const upcomingSessions: TrainingSession[] = [];
 
 export const formatIcons: Record<TrainingFormat, IconName> = {
   classroom: "user-check",

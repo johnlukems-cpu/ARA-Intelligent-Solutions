@@ -19,7 +19,7 @@ export const cases: CaseStudy[] = [
     type: "in-progress",
     icon: "globe",
     accent: "cyan",
-    category: "digital",
+    category: "digital-solutions",
     year: 2026,
     title: {
       nl: "Tweetalige website van ARA Intelligent Solutions",
@@ -55,7 +55,7 @@ export const cases: CaseStudy[] = [
     type: "concept",
     icon: "file",
     accent: "blue",
-    category: "ai",
+    category: "ai-solutions",
     title: {
       nl: "AI-ondersteunde verwerking van inkomende documenten",
       en: "AI-assisted processing of incoming documents",
@@ -88,7 +88,7 @@ export const cases: CaseStudy[] = [
     type: "concept",
     icon: "calendar",
     accent: "yellow",
-    category: "software",
+    category: "digital-solutions",
     title: {
       nl: "Online boekingsplatform voor dienstverleners",
       en: "Online booking platform for service providers",
@@ -121,7 +121,7 @@ export const cases: CaseStudy[] = [
     type: "concept",
     icon: "chart",
     accent: "navy",
-    category: "automation",
+    category: "ai-solutions",
     title: {
       nl: "Geautomatiseerde maandrapportages",
       en: "Automated monthly reporting",

@@ -9,7 +9,7 @@ const article: Article = {
   icon: "plug",
   accent: "cyan",
   isDemo: true,
-  ctaService: "automation",
+  ctaService: "ai-solutions",
   translations: {
     nl: {
       title: "API-koppelingen uitgelegd voor niet-technici",

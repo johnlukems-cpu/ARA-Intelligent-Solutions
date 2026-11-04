@@ -1,13 +1,15 @@
 import { trainings } from "@/content/academy";
-import { serviceCategories } from "@/content/services";
 import { getNewsLocales } from "@/content/news";
+import { CONSULTATION_TOPIC, divisions, serviceCategories } from "@/content/services";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href, type RouteKey } from "@/i18n/routes";
+import { divisionHref } from "@/lib/divisions";
 import { HeaderClient, type NavItem } from "./header-client";
 import { Logo } from "./logo";
 
-const navKeys = ["home", "services", "aiEmployees", "academy", "products", "pricing", "news", "cases", "about", "contact"] as const satisfies readonly RouteKey[];
+/** Main navigation; "Services" is rendered as a dropdown after "Home". */
+const navKeys = ["home", "products", "about", "cases", "news", "contact"] as const satisfies readonly RouteKey[];
 
 export function Header({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -17,7 +19,23 @@ export function Header({ locale }: { locale: Locale }) {
     <HeaderClient
       locale={locale}
       items={items}
-      cta={{ key: "cta", label: t.nav.cta, href: href(locale, "contact") }}
+      services={{
+        label: t.nav.services,
+        menuLabel: t.nav.servicesMenu,
+        divisions: divisions.map((division) => ({
+          id: division.id,
+          href: divisionHref(locale, division),
+          label: division.name[locale],
+          description: division.summary[locale],
+          icon: division.icon,
+        })),
+        links: [
+          { key: "services", label: t.nav.allServices, href: href(locale, "services") },
+          { key: "aiEmployees", label: t.nav.aiEmployees, href: href(locale, "aiEmployees") },
+          { key: "pricing", label: t.nav.pricing, href: href(locale, "pricing") },
+        ],
+      }}
+      cta={{ key: "cta", label: t.nav.cta, href: `${href(locale, "contact")}?topic=${CONSULTATION_TOPIC}` }}
       homeHref={homeHref}
       alternates={{
         serviceSlugs: serviceCategories.map((c) => c.slug),

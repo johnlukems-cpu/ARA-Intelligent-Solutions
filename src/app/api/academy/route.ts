@@ -29,7 +29,9 @@ export async function POST(request: NextRequest) {
   const count = Number(input.participants);
   const priceLabel = !training
     ? undefined
-    : training.price.unit === "per-group"
+    : !training.price
+      ? "op aanvraag / on request"
+      : training.price.unit === "per-group"
       ? `vanaf / from $${training.price.amount} per groep / per group (offerte / quote)`
       : `$${training.price.amount} p.p. x ${count} = $${training.price.amount * count} USD`;
 

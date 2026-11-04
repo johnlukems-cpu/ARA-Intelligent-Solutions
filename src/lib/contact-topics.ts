@@ -1,7 +1,7 @@
 import { aiPackages, aiSpecialisations } from "@/content/ai-employees";
 import { pricingPackages } from "@/content/pricing";
 import { products } from "@/content/products";
-import { serviceCategories } from "@/content/services";
+import { CONSULTATION_TOPIC, serviceCategories } from "@/content/services";
 import type { Locale } from "@/i18n/config";
 import { OTHER_TOPIC } from "./contact";
 
@@ -10,9 +10,10 @@ export type TopicGroup = { label: string; options: { value: string; label: strin
 /** Topics offered in the contact form, grouped by service area and products. */
 export function getContactTopicGroups(
   locale: Locale,
-  labels: { products: string; packages: string; aiPackages: string },
+  labels: { products: string; packages: string; aiPackages: string; general: string; consultation: string },
 ): TopicGroup[] {
   return [
+    { label: labels.general, options: [{ value: CONSULTATION_TOPIC, label: labels.consultation }] },
     {
       label: labels.aiPackages,
       options: [
@@ -38,6 +39,7 @@ export function getContactTopicGroups(
 /** All valid topic values, used for server-side validation. */
 export function getContactTopicIds(): string[] {
   return [
+    CONSULTATION_TOPIC,
     ...serviceCategories.flatMap((category) => category.services.map((service) => service.id)),
     ...products.map((product) => `product:${product.slug}`),
     ...pricingPackages.map((item) => `package:${item.id}`),
@@ -49,6 +51,7 @@ export function getContactTopicIds(): string[] {
 
 export function getTopicLabel(value: string, locale: Locale): string {
   if (value === OTHER_TOPIC) return locale === "nl" ? "Anders" : "Other";
+  if (value === CONSULTATION_TOPIC) return locale === "nl" ? "Gratis kennismaking" : "Free consultation";
   if (value.startsWith("package:")) {
     const item = [...pricingPackages, ...aiPackages].find((p) => `package:${p.id}` === value);
     return item ? `${locale === "nl" ? "Pakket" : "Package"}: ${item.name[locale]}` : value;
