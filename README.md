@@ -35,6 +35,7 @@ Requires Node.js 20.9 or newer (Next.js 16 requirement).
 | --- | --- |
 | `/` | `/en` |
 | `/ai-medewerkers` | `/en/ai-assistants` |
+| `/ai-academy`, `/ai-academy/[slug]` | `/en/ai-academy`, `/en/ai-academy/[slug]` |
 | `/prijzen` | `/en/pricing` |
 | `/diensten`, `/diensten/[slug]` | `/en/services`, `/en/services/[slug]` |
 | `/producten`, `/producten/[slug]` | `/en/products`, `/en/products/[slug]` |
@@ -44,7 +45,7 @@ Requires Node.js 20.9 or newer (Next.js 16 requirement).
 | `/contact` | `/en/contact` |
 | `/privacy`, `/voorwaarden`, `/cookies` | `/en/privacy`, `/en/terms`, `/en/cookies` |
 
-Also: `/sitemap.xml`, `/robots.txt`, `POST /api/contact`. Unknown URLs get a bilingual 404 page (`src/app/global-not-found.tsx`).
+Also: `/sitemap.xml`, `/robots.txt`, `POST /api/contact`, `POST /api/academy`. Unknown URLs get a bilingual 404 page (`src/app/global-not-found.tsx`).
 
 ## Project structure
 
@@ -94,6 +95,8 @@ All content lives in `src/content/`. Pages, cards, the footer, the sitemap and s
   - `isSample: true` marks illustrative placeholder entries with a "Concept" label (none at the moment).
 - **Pricing**: `pricing.ts`. Seven packages (USD), the extra Google Workspace users card, general terms and the pricing FAQ. Quote buttons open the contact form with `?topic=package:<id>` pre-selected.
 - **ARA AI Medewerkers**: `ai-employees.ts`. The three AI packages (introductory prices), the five specialisations, the five-step "how it works", separate costs, safety principles and terms. The page lives at `/ai-medewerkers`; a teaser block appears on the homepage, services, the AI service area and the pricing page.
+- **ARA AI Academy**: `academy.ts`. The four trainings (prices in USD, duration, included items, programme, audience, outcomes), training formats, what participants receive, the Claude topics, official Anthropic links, pricing terms and the FAQ. Each training has its own page at `/ai-academy/<slug>`. The registration form posts to `/api/academy` and uses the same delivery integration as the contact form (Resend or webhook; the webhook payload has `type: "academy_registration"`). "Register" buttons pre-select the training via `?training=<id>`; the form shows the price and an estimated total. Submitting is a request, not a confirmed registration.
+  - ARA is not presented as an Anthropic partner, no Anthropic or Claude logos are used, and the certificate is described as an ARA certificate of participation. Keep it that way unless a partnership is officially confirmed.
 - **News**: create a file in `content/news/articles/`, then add it to the list in `content/news/index.ts`. Provide `translations.nl` and/or `translations.en`. The body uses structured blocks (`paragraph`, `heading`, `subheading`, `list`, `quote`, `callout`), so no HTML is needed and nothing unsafe gets rendered. Reading time is calculated automatically.
   - **Missing translations**: an article without English is still listed in the English section with an "Only available in Dutch" label. Its page shows the original text with a notice, is `noindex` and points its canonical URL at the original. The language switch on such a page goes to the news overview.
   - `isDemo: true` shows a "sample article" notice. **All seven current articles are demo content** (general, factual guidance; no company announcements). Review or replace them before launch.
@@ -110,7 +113,7 @@ See `.env.example`. Nothing is hardcoded; any value left empty is simply not sho
 | `NEXT_PUBLIC_SITE_URL` | Production URL. Used for canonical URLs, sitemap, Open Graph and structured data. **Required for launch.** |
 | `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_CONTACT_PHONE`, `NEXT_PUBLIC_WHATSAPP_NUMBER` | Verified public contact details. Shown in the footer and on the contact page only when set. |
 | `NEXT_PUBLIC_LINKEDIN_URL`, `NEXT_PUBLIC_FACEBOOK_URL`, `NEXT_PUBLIC_INSTAGRAM_URL` | Social profiles. Icons appear in the footer only when set. |
-| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Contact form delivery via [Resend](https://resend.com) (the sender domain must be verified there). |
+| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Contact and AI Academy form delivery via [Resend](https://resend.com) (the sender domain must be verified there). |
 | `CONTACT_WEBHOOK_URL`, `CONTACT_WEBHOOK_SECRET` | Alternative: POST each message as JSON to a webhook (n8n, Make, Zapier, …). The secret is sent as the `X-Webhook-Secret` header. |
 
 `NEXT_PUBLIC_*` values are inlined at build time, so rebuild after changing them.

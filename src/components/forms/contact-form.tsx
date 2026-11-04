@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { CircleCheck, LoaderCircle, Send, TriangleAlert, Wrench } from "lucide-react";
+import { LoaderCircle, Send, TriangleAlert } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import {
@@ -18,6 +18,7 @@ import {
 import type { TopicGroup } from "@/lib/contact-topics";
 import { cn } from "@/lib/format";
 import { Button } from "@/components/ui/button";
+import { FormAlert, SubmissionResult } from "./form-ui";
 
 type FormState = {
   name: string;
@@ -174,28 +175,17 @@ export function ContactForm({ locale, topicGroups, privacyHref }: { locale: Loca
   };
 
   if (status.type === "success") {
-    const development = status.mode === "development";
     return (
-      <div
-        ref={statusRef}
-        tabIndex={-1}
-        role="status"
-        className={cn(
-          "rounded-[var(--radius-card)] p-8 text-center ring-1 outline-none",
-          development ? "bg-macaw/10 ring-macaw/50" : "bg-emerald-50 ring-emerald-600/25",
-        )}
-      >
-        {development ? (
-          <Wrench aria-hidden="true" className="mx-auto size-10 text-macaw-600" />
-        ) : (
-          <CircleCheck aria-hidden="true" className="mx-auto size-10 text-success" />
-        )}
-        <h2 className="mt-4 text-2xl font-extrabold">{development ? c.devTitle : c.successTitle}</h2>
-        <p className="mx-auto mt-2 max-w-md text-muted">{development ? c.devText : c.successText}</p>
-        <Button variant="outline" className="mt-6" onClick={() => setStatus({ type: "idle" })}>
-          {c.sendAnother}
-        </Button>
-      </div>
+      <SubmissionResult
+        development={status.mode === "development"}
+        title={c.successTitle}
+        text={c.successText}
+        devTitle={c.devTitle}
+        devText={c.devText}
+        againLabel={c.sendAnother}
+        onAgain={() => setStatus({ type: "idle" })}
+        focusRef={statusRef}
+      />
     );
   }
 
@@ -236,12 +226,7 @@ export function ContactForm({ locale, topicGroups, privacyHref }: { locale: Loca
   return (
     <form ref={formRef} noValidate onSubmit={onSubmit} aria-busy={submitting} className="space-y-6">
       <div ref={statusRef} tabIndex={-1} aria-live="assertive" className="outline-none">
-        {status.type === "error" ? (
-          <p role="alert" className="flex items-start gap-2 rounded-xl border border-danger/30 bg-red-50 px-4 py-3 text-sm font-medium text-danger">
-            <TriangleAlert aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
-            {status.message}
-          </p>
-        ) : null}
+        <FormAlert message={status.type === "error" ? status.message : undefined} />
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2">

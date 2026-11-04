@@ -114,7 +114,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
 
   // Close if the viewport grows to desktop size.
   useEffect(() => {
-    const media = window.matchMedia("(min-width: 1024px)");
+    const media = window.matchMedia("(min-width: 1280px)");
     const onChange = () => media.matches && setOpen(false);
     media.addEventListener("change", onChange);
     return () => media.removeEventListener("change", onChange);
@@ -125,7 +125,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
       <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 lg:h-[5.5rem]">
         {logo}
 
-        <nav aria-label={labels.mainNav} className="hidden lg:block">
+        <nav aria-label={labels.mainNav} className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {/* The logo links home, so the desktop bar leaves "Home" out to make room. */}
             {items.filter((item) => item.href !== homeHref).map((item) => {
@@ -136,7 +136,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative rounded-md px-2 py-2 text-[0.9rem] font-medium whitespace-nowrap transition-colors xl:px-3",
+                      "relative rounded-md px-2 py-2 text-[0.9rem] font-medium whitespace-nowrap transition-colors",
                       active ? "text-cyan" : "text-white/85 hover:text-white",
                     )}
                   >
@@ -144,7 +144,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-cyan transition-opacity xl:inset-x-3",
+                        "absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-cyan transition-opacity",
                         active ? "opacity-100" : "opacity-0",
                       )}
                     />
@@ -157,17 +157,10 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
 
         <div className="flex items-center gap-3">
           <LanguageSwitch locale={locale} pathname={pathname} alternates={alternates} label={labels.languageSwitch} />
-          <Link
-            href={cta.href}
-            className="group hidden items-center gap-2 rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-midnight shadow-[0_8px_24px_-10px_rgb(0_213_232/0.8)] transition-colors hover:bg-cyan-300 xl:inline-flex"
-          >
-            {cta.label}
-            <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
           <button
             ref={toggleRef}
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-full text-white ring-1 ring-white/20 transition-colors hover:bg-white/10 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-full text-white ring-1 ring-white/20 transition-colors hover:bg-white/10 xl:hidden"
             aria-expanded={open}
             aria-controls={panelId}
             aria-label={open ? labels.closeMenu : labels.openMenu}
@@ -182,7 +175,7 @@ export function HeaderClient({ locale, items, cta, homeHref, alternates, labels,
         id={panelId}
         ref={panelRef}
         hidden={!open}
-        className="fixed inset-x-0 top-[4.5rem] bottom-0 overflow-y-auto border-t border-white/10 bg-midnight lg:hidden"
+        className="fixed inset-x-0 top-[4.5rem] bottom-0 overflow-y-auto border-t border-white/10 bg-midnight lg:top-[5.5rem] xl:hidden"
       >
         <nav aria-label={labels.mainNav} className="container-site py-6">
           <ul className="flex flex-col gap-1">

@@ -103,6 +103,7 @@ export function Footer({ locale }: { locale: Locale }) {
             <FooterLink href={href(locale, "home")}>{t.nav.home}</FooterLink>
             <FooterLink href={href(locale, "services")}>{t.nav.services}</FooterLink>
             <FooterLink href={href(locale, "aiEmployees")}>{t.nav.aiEmployees}</FooterLink>
+            <FooterLink href={href(locale, "academy")}>{t.nav.academy}</FooterLink>
             <FooterLink href={href(locale, "pricing")}>{t.nav.pricing}</FooterLink>
             <FooterLink href={href(locale, "cases")}>{t.nav.cases}</FooterLink>
             <FooterLink href={href(locale, "about")}>{t.nav.about}</FooterLink>

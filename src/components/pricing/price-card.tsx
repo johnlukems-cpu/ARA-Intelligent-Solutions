@@ -1,4 +1,5 @@
-import { CircleCheck, CircleMinus, Info, Wrench } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CircleCheck, CircleMinus, Clock, Info, Wrench } from "lucide-react";
 import type { IconName } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -7,7 +8,7 @@ import { formatUsd } from "@/lib/price";
 import { ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 
-export type PricePeriod = "one-time" | "per-month" | "per-project";
+export type PricePeriod = "one-time" | "per-month" | "per-project" | "per-person" | "per-group";
 
 export type PriceCardData = {
   id: string;
@@ -18,6 +19,8 @@ export type PriceCardData = {
   /** Short line about who it is for. */
   audience?: string;
   price: { amount: number; from?: boolean; period: PricePeriod };
+  /** Optional duration line shown under the price (e.g. trainings). */
+  duration?: string;
   included: string[];
   includedTitle?: string;
   examples?: string[];
@@ -28,6 +31,8 @@ export type PriceCardData = {
   note?: string;
   ctaHref: string;
   ctaLabel?: string;
+  /** Optional secondary text link (e.g. to a detail page). */
+  secondary?: { href: string; label: string };
   highlight?: boolean;
 };
 
@@ -64,6 +69,12 @@ export function PriceCard({ data, locale, headingLevel = "h3" }: { data: PriceCa
         <span className="text-sm font-semibold text-muted">
           {t.currency} {periodLabel}
         </span>
+        {data.duration ? (
+          <span className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-navy">
+            <Clock aria-hidden="true" className="size-4 text-electric-600" />
+            {data.duration}
+          </span>
+        ) : null}
       </p>
 
       <div className="mt-5">
@@ -127,9 +138,23 @@ export function PriceCard({ data, locale, headingLevel = "h3" }: { data: PriceCa
       {data.note ? <p className="mt-4 text-sm font-medium text-midnight">{data.note}</p> : null}
 
       <div className="mt-auto pt-6">
-        <ButtonLink href={data.ctaHref} variant={data.highlight ? "primary" : "secondary"} className="w-full" arrow>
+        <ButtonLink
+          href={data.ctaHref}
+          variant={data.highlight ? "primary" : "secondary"}
+          className="w-full text-center whitespace-normal!"
+          arrow
+        >
           {data.ctaLabel ?? t.requestQuote}
         </ButtonLink>
+        {data.secondary ? (
+          <Link
+            href={data.secondary.href}
+            className="mt-3 flex items-center justify-center gap-1.5 rounded-md py-1 text-sm font-semibold text-electric-600 hover:text-navy"
+          >
+            {data.secondary.label}
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
+        ) : null}
       </div>
     </article>
   );

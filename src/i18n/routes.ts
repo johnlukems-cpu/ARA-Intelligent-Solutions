@@ -10,6 +10,7 @@ export const routeSegments = {
   products: { nl: "producten", en: "products" },
   pricing: { nl: "prijzen", en: "pricing" },
   aiEmployees: { nl: "ai-medewerkers", en: "ai-assistants" },
+  academy: { nl: "ai-academy", en: "ai-academy" },
   news: { nl: "nieuws", en: "news" },
   cases: { nl: "cases", en: "cases" },
   about: { nl: "over-ons", en: "about" },
@@ -37,6 +38,8 @@ export function href(locale: Locale, key: RouteKey, slug?: string): string {
 export type AlternateContext = {
   /** Service category slugs per language. */
   serviceSlugs: Localized[];
+  /** AI Academy training slugs per language. */
+  academySlugs: Localized[];
   /** News slugs mapped to the languages in which the article exists. */
   newsLocales: Record<string, Locale[]>;
 };
@@ -63,8 +66,10 @@ export function alternatePath(pathname: string, from: Locale, to: Locale, ctx: A
   if (!second) return href(to, key);
 
   switch (key) {
-    case "services": {
-      const match = ctx.serviceSlugs.find((slugs) => slugs[from] === second);
+    case "services":
+    case "academy": {
+      const slugs = key === "services" ? ctx.serviceSlugs : ctx.academySlugs;
+      const match = slugs.find((s) => s[from] === second);
       return match ? href(to, key, match[to]) : href(to, key);
     }
     case "news": {

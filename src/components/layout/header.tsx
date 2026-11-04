@@ -1,3 +1,4 @@
+import { trainings } from "@/content/academy";
 import { serviceCategories } from "@/content/services";
 import { getNewsLocales } from "@/content/news";
 import type { Locale } from "@/i18n/config";
@@ -6,7 +7,7 @@ import { href, type RouteKey } from "@/i18n/routes";
 import { HeaderClient, type NavItem } from "./header-client";
 import { Logo } from "./logo";
 
-const navKeys = ["home", "services", "aiEmployees", "products", "pricing", "news", "cases", "about", "contact"] as const satisfies readonly RouteKey[];
+const navKeys = ["home", "services", "aiEmployees", "academy", "products", "pricing", "news", "cases", "about", "contact"] as const satisfies readonly RouteKey[];
 
 export function Header({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -18,7 +19,11 @@ export function Header({ locale }: { locale: Locale }) {
       items={items}
       cta={{ key: "cta", label: t.nav.cta, href: href(locale, "contact") }}
       homeHref={homeHref}
-      alternates={{ serviceSlugs: serviceCategories.map((c) => c.slug), newsLocales: getNewsLocales() }}
+      alternates={{
+        serviceSlugs: serviceCategories.map((c) => c.slug),
+        academySlugs: trainings.map((training) => training.slug),
+        newsLocales: getNewsLocales(),
+      }}
       labels={{
         openMenu: t.a11y.openMenu,
         closeMenu: t.a11y.closeMenu,

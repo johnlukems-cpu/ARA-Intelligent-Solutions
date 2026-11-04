@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/config/site";
+import { trainings } from "@/content/academy";
 import { cases } from "@/content/cases";
 import { articles } from "@/content/news";
 import { products } from "@/content/products";
@@ -28,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["products", 0.8],
     ["pricing", 0.8],
     ["aiEmployees", 0.9],
+    ["academy", 0.9],
     ["news", 0.8],
     ["cases", 0.6],
     ["about", 0.7],
@@ -40,6 +42,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticKeys.map(([key, priority]) => ({ paths: { nl: href("nl", key), en: href("en", key) }, priority })),
     ...serviceCategories.map((c) => ({
       paths: { nl: href("nl", "services", c.slug.nl), en: href("en", "services", c.slug.en) },
+      priority: 0.8,
+    })),
+    ...trainings.map((training) => ({
+      paths: { nl: href("nl", "academy", training.slug.nl), en: href("en", "academy", training.slug.en) },
       priority: 0.8,
     })),
     ...products.map((p) => ({ paths: { nl: href("nl", "products", p.slug), en: href("en", "products", p.slug) }, priority: 0.6 })),
