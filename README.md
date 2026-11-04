@@ -76,14 +76,14 @@ The route files under `src/app` are thin wrappers: each calls a view from `src/v
 | --- | --- | --- |
 | `src/assets/images/ara-wordmark.webp` | Header and footer logo, 404 page | The ARA wordmark without the macaw (`scripts/brand-assets/make_wordmark.py`, derived from `ara-logo-dark.webp`; the first A is a copy of the last A because the macaw overlapped it). "INTELLIGENT SOLUTIONS" and the tagline are live text in `src/components/layout/logo.tsx`, so they stay readable at small sizes. |
 | `src/assets/images/ara-logo-dark.webp` | Source only | The original ARA logo with the macaw, on a transparent background (`scripts/brand-assets/make_logo_dark.py`). |
-| `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | Original circular ARA emblem (unchanged) |
+| `src/app/icon.png`, `src/app/apple-icon.png`, `public/images/ara-emblem-192.png` | Favicons and structured-data logo | ARA wordmark on midnight blue, no macaw (`python3 scripts/brand-assets/make_icons.py`) |
 | `src/assets/images/robot-hero.webp` | Homepage hero, About page | ARA robot artwork (robot at a laptop) with its own background; the outer edges fade into the hero |
 | `src/assets/images/robot-office.webp` | Homepage about card, About page | The same robot artwork without edge fades (robot fully visible) |
 | `src/assets/images/robot-ai-process.webp`, `robot-<specialisation>.webp` | AI-medewerkers hero and specialisation cards | AI-medewerkers infographic |
 | `public/og/ara-og.jpg` | Social preview image | ARA promo artwork |
 | `src/assets/images/suriname-river.webp` | Call-to-action band | Original brand artwork |
 
-Apart from the favicons, the macaw imagery has been replaced: the logo uses the wordmark without the macaw, illustrations use the ARA robot. `scripts/brand-assets/make_robot_assets.py` regenerates the robot images from the three supplied artworks: `python3 scripts/brand-assets/make_robot_assets.py 9.webp 10.webp 11.webp .`
+The macaw is no longer used anywhere on the site: the logo and icons use the ARA wordmark, illustrations use the ARA robot. `scripts/brand-assets/make_robot_assets.py` regenerates the robot images from the three supplied artworks: `python3 scripts/brand-assets/make_robot_assets.py 9.webp 10.webp 11.webp .`
 
 ## Editing content
 
@@ -92,7 +92,7 @@ All content lives in `src/content/`. Pages, cards, the footer, the sitemap and s
 - **Divisions and services**: `services.ts`. ARA works as four divisions under one brand: ARA AI Solutions, ARA Digital Solutions, ARA AI Academy and ARA IT & Business Technology. The three service divisions each have four services (offerings, examples, benefits) plus applications, benefits, working process, FAQ, CTA and SEO texts. `divisions` defines the order used by the header dropdown, footer, homepage and services page (the Academy entry links to `/academy`). The AI division note states human oversight; the IT note explains which services ARA delivers directly and which through partners.
 - **Products**: `products.ts`. The catalogue contains ARA Payroll, ARA Accounting, ARA Tax, ARA HR and BouwFlow, all with status `coming-soon`. Their descriptions, features and FAQs are draft texts; check them before launch. Rules (also documented in the file):
   - `status`: `available`, `beta`, `in-development` or `coming-soon`. Only use `available`/`beta` for products that really exist. While any product is unreleased, the catalogue shows a "coming soon, details may change" notice.
-  - `brand`: `{ kind: "ara-app", tone, icon, label }` shows the ARA app style (coloured app icon + "ARA" + name as live text). `{ kind: "logo", src, width, height }` shows a product's own logo (BouwFlow). Icons and logos live in `public/images/products/`. Without `brand`, generated artwork is used.
+  - `brand`: `{ kind: "ara-app", tone, label }` shows the ARA app style (a coloured tile with the product's `icon` + "ARA" + name as live text). `{ kind: "logo", src, width, height }` shows a product's own logo (BouwFlow, in `public/images/products/`). Without `brand`, generated artwork is used.
   - `pricing` is optional. Leave it out until prices are confirmed; the page then says pricing has not been announced.
   - `cta`: `{ type: "contact" }` sends visitors to the contact form with the product pre-selected. Only use `{ type: "external", url, label }` once a working destination such as a checkout exists.
   - `isSample: true` marks illustrative placeholder entries with a "Concept" label (none at the moment).
