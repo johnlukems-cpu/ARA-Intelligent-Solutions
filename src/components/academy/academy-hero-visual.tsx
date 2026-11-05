@@ -8,7 +8,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 export function AcademyHeroVisual({ locale }: { locale: Locale }) {
   const a = getDictionary(locale).academy;
   return (
-    <div className="relative mx-auto w-full max-w-lg pb-10 sm:pb-6">
+    <div className="relative mx-auto w-full max-w-lg pb-10 sm:pb-6 2xl:max-w-2xl">
       <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-full bg-electric/25 blur-3xl" />
       <Image
         src={robotOffice}

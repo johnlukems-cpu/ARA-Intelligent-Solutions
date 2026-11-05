@@ -2,15 +2,14 @@ import Image from "next/image";
 import type { Product, ProductBrand } from "@/content/types";
 import { cn } from "@/lib/format";
 import { CoverArt } from "./cover-art";
-import { Icon } from "./icon";
 
 type AppTone = Extract<ProductBrand, { kind: "ara-app" }>["tone"];
 
-const tones: Record<AppTone, { panel: string; bar: string; label: string; tile: string }> = {
-  blue: { panel: "from-[#e8f1ff] via-white to-[#dbeafe]", bar: "bg-[#1d6fe0]", label: "text-[#0b3b8c]", tile: "from-[#2f86ff] to-[#0b4fc4]" },
-  green: { panel: "from-[#e7f8ee] via-white to-[#d6f3e2]", bar: "bg-[#16a34a]", label: "text-[#0d5c2c]", tile: "from-[#22c55e] to-[#0f7a37]" },
-  amber: { panel: "from-[#fff5df] via-white to-[#ffedc2]", bar: "bg-[#f59e0b]", label: "text-[#7a4b00]", tile: "from-[#fbbf24] to-[#d97706]" },
-  purple: { panel: "from-[#f2ebff] via-white to-[#e7dcff]", bar: "bg-[#7c3aed]", label: "text-[#4c1d95]", tile: "from-[#9b5cf6] to-[#5b21b6]" },
+const tones: Record<AppTone, { panel: string; bar: string; label: string }> = {
+  blue: { panel: "from-[#e8f1ff] via-white to-[#dbeafe]", bar: "bg-[#1d6fe0]", label: "text-[#0b3b8c]" },
+  green: { panel: "from-[#e7f8ee] via-white to-[#d6f3e2]", bar: "bg-[#16a34a]", label: "text-[#0d5c2c]" },
+  amber: { panel: "from-[#fff5df] via-white to-[#ffedc2]", bar: "bg-[#f59e0b]", label: "text-[#7a4b00]" },
+  purple: { panel: "from-[#f2ebff] via-white to-[#e7dcff]", bar: "bg-[#7c3aed]", label: "text-[#4c1d95]" },
 };
 
 /**
@@ -45,15 +44,13 @@ export function ProductVisual({ product, size = "md", className }: { product: Pr
     <div aria-hidden="true" className={cn("relative flex items-center justify-center overflow-hidden bg-gradient-to-br", tone.panel, className)}>
       <div className={cn("absolute -right-10 -bottom-12 size-40 rotate-12 rounded-[2.5rem] opacity-10", tone.bar)} />
       <div className="relative flex items-center gap-4">
-        <span
-          className={cn(
-            "flex items-center justify-center rounded-2xl bg-gradient-to-br text-white shadow-lg ring-1 ring-white/30",
-            tone.tile,
-            lg ? "size-20" : "size-16",
-          )}
-        >
-          <Icon name={product.icon} className={lg ? "size-10" : "size-8"} />
-        </span>
+        <Image
+          src={brand.icon}
+          alt=""
+          width={156}
+          height={156}
+          className={cn("rounded-2xl shadow-lg", lg ? "size-20" : "size-16")}
+        />
         <div className="leading-none">
           <span className={cn("block font-display font-extrabold tracking-[0.06em] text-navy", lg ? "text-5xl" : "text-4xl")}>ARA</span>
           <span className={cn("mt-1 block font-display font-bold", tone.label, lg ? "text-2xl" : "text-xl")}>{brand.label}</span>

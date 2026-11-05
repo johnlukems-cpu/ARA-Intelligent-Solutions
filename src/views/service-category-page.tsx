@@ -65,7 +65,7 @@ export function ServiceCategoryPage({ category, locale }: { category: ServiceCat
         ]}
         aside={
           category.id === "ai-solutions" ? (
-            <div className="relative mx-auto w-full max-w-lg">
+            <div className="relative mx-auto w-full max-w-lg 2xl:max-w-2xl">
               <div aria-hidden="true" className="absolute -inset-6 -z-10 rounded-full bg-electric/25 blur-3xl" />
               <Image
                 src={robotProcess}

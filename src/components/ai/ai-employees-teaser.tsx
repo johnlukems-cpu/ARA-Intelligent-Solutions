@@ -26,7 +26,7 @@ export function AiEmployeesTeaser({ locale, headingLevel = "h2" }: { locale: Loc
             {t.teaserCta}
           </ButtonLink>
         </div>
-        <AiWorkerIllustration locale={locale} className="mx-auto w-full max-w-sm lg:col-span-5" />
+        <AiWorkerIllustration locale={locale} className="mx-auto w-full max-w-sm lg:col-span-5 2xl:max-w-md" />
       </div>
     </section>
   );

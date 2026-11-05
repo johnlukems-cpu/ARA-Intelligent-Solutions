@@ -118,8 +118,8 @@ export type ProductImage = { src: string; alt: Localized; width: number; height:
 
 /** How a product is shown visually on cards and its detail page. */
 export type ProductBrand =
-  /** ARA app style: coloured app tile (the product's icon) + "ARA" wordmark + product label. */
-  | { kind: "ara-app"; tone: "blue" | "green" | "amber" | "purple"; label: string }
+  /** ARA app style: coloured app icon + "ARA" wordmark + product label. */
+  | { kind: "ara-app"; tone: "blue" | "green" | "amber" | "purple"; icon: string; label: string }
   /** A product with its own logo (transparent image in /public). */
   | { kind: "logo"; src: string; width: number; height: number };
 

@@ -9,7 +9,7 @@ import { Icon } from "./icon";
  */
 export function DivisionVisual({ category, locale, className }: { category: ServiceCategory; locale: Locale; className?: string }) {
   return (
-    <div aria-hidden="true" className={cn("relative mx-auto w-full max-w-md", className)}>
+    <div aria-hidden="true" className={cn("relative mx-auto w-full max-w-md 2xl:max-w-xl", className)}>
       <div className="absolute -inset-6 -z-10 rounded-full bg-electric/25 blur-3xl" />
       <div className="rounded-[1.75rem] bg-white/[0.06] p-6 ring-1 ring-white/15 backdrop-blur-sm">
         <div className="flex items-center gap-3">
